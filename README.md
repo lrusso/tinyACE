@@ -1,4 +1,4 @@
-# TinyCodeEditor
+# Tiny Code Editor
 
 ## Demo:
 
