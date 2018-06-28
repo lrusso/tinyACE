@@ -8,7 +8,7 @@
 			body{margin:0;padding:0;height:100%;}
 			img{vertical-align:middle;padding-right:10px;}
 			.toolbar{position:absolute;z-index:80;font-family:Arial;font-size:13px;line-height:35px;background-color:#f8f8f8;width:100%;height:35px;border-bottom:1px solid #ddd;}
-			.toolbar_icons{float:left;padding-left:10px;}
+			.toolbar_icons{float:left;padding-left:5px;}
 			.toolbar_filename{position:absolute;left:0;right:0;top:0;height:35px;width:500px;margin:0 auto;text-align:center;font-family:Arial;-webkit-user-select:none;-moz-user-select:none;user-select:none;}
 			.toolbar_about{float:right;padding-right:10px;-webkit-user-select:none;-moz-user-select:none;user-select:none;}
 
@@ -82,9 +82,12 @@
 
 			var editor = CodeMirror.fromTextArea(document.getElementById("textcode"), {lineNumbers: true,mode: "text/html",matchBrackets: true,autofocus: true});
 
-			var w = window, d = document, e = d.documentElement, g = d.getElementsByTagName("body")[0], x = w.innerWidth || e.clientWidth || g.clientWidth, y = w.innerHeight|| e.clientHeight|| g.clientHeight;
-			var editHeight = y - 35;
-			editor.setSize(null,editHeight);
+			function resizeEditor()
+				{
+				var w = window, d = document, e = d.documentElement, g = d.getElementsByTagName("body")[0], x = w.innerWidth || e.clientWidth || g.clientWidth, y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+				var editHeight = y - 35;
+				editor.setSize(null,editHeight);
+				}
 
 			document.getElementById("newFile").onclick = function()
 				{
@@ -204,6 +207,13 @@
 				link.download = filename || "data.json";
 				link.click();
 				}
+
+			resizeEditor();
+
+			window.onresize = function(event)
+				{
+				resizeEditor();
+				};
 		</script>
 	</body>
 </html>
