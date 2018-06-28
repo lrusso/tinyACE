@@ -2,7 +2,7 @@
 <html class="header_html" lang="es">
 	<head>
 		<meta charset="utf-8"/>
-		<title>TCE - Tiny Code Editor</title>
+		<title>Tiny Code Editor</title>
 		<style>
 			html{height:100%;}
 			body{margin:0;padding:0;height:100%;}
@@ -147,6 +147,10 @@
 						{
 						newJavascript(content);
 						}
+					else
+						{
+						newHTML(content);
+						}
 					};
 				filereader.readAsText(file);
 				};
@@ -206,6 +210,7 @@
 				link.href = URL.createObjectURL(blob);
 				link.download = filename || "data.json";
 				link.click();
+				editor.focus();
 				}
 
 			resizeEditor();
