@@ -53,7 +53,7 @@
 				valueSearchForAll = "Search for all:";
 				valueReplaceWith = "Replace with:";
 				valueReplaceQuestion = "\u00BFReplace?";
-				valueNew = "Lose any unsaved changes?";				
+				valueNew = "Lose any unsaved changes?";
 				valueWelcome = "<!DOCTYPE html>\n<html>\n&#09;<head>\n&#09;&#09;<title>Welcome to Tiny Code Editor (based on CodeMirror) by Leonardo Russo / www.lrusso.com</title>\n&#09;&#09;<link rel=\"stylesheet\" href=\"styles.css\">\n&#09;</head>\n&#09;<body>\n&#09;&#09;<form action=\"example.htm\" type=\"GET\">\n&#09;&#09;&#09;<input type=\"text\" value=\"TEST TEXT\">\n&#09;&#09;&#09;<input type=\"submit\" value=\"ENTER\">\n&#09;&#09;</form>\n&#09;</body>\n</html>";
 				}
 		</script>
@@ -149,7 +149,7 @@
 					valueFilename = valueFilenameEmpty + ".htm";
 					document.getElementById("tinycodeeditor-toolbar-filename").innerHTML = valueFilename;
 					newHTML("");
-					}					
+					}
 				};
 
 			document.getElementById("tinycodeeditor-saveFile").onclick = function()
@@ -309,7 +309,7 @@
 					editor.setOption("mode","application/xml");
 					if (changeFileName>-1){valueFilename = valueFilenameEmpty + ".xml";}
 					}
-				
+
 				document.getElementById("tinycodeeditor-toolbar-filename").innerHTML = valueFilename;
 				editor.focus();
 				}
