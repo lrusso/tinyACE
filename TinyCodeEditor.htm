@@ -127,7 +127,7 @@
 			// searchcursor.js
 			!function(e){"use strict";function s(e,s){var r=Number(s);return/^[-+]/.test(s)?e.getCursor().line+r:r-1}e.commands.jumpToLine=function(e){var r,t,o,n,i,l=e.getCursor();r=e,t='Jump to line: <input type="text" style="width: 10em" class="CodeMirror-search-field"/> <span style="color: #888" class="CodeMirror-search-hint">(Use line:column or scroll% syntax)</span>',o="Jump to line:",n=l.line+1+":"+l.ch,i=function(r){var t;if(r)if(t=/^\s*([\+\-]?\d+)\s*\:\s*(\d+)\s*$/.exec(r))e.setCursor(s(e,t[1]),Number(t[2]));else if(t=/^\s*([\+\-]?\d+(\.\d+)?)\%\s*/.exec(r)){var o=Math.round(e.lineCount()*Number(t[1])/100);/^[-+]/.test(t[1])&&(o=l.line+o+1),e.setCursor(o-1,l.ch)}else(t=/^\s*\:?\s*([\+\-]?\d+)\s*/.exec(r))&&e.setCursor(s(e,t[1]),l.ch)},r.openDialog?r.openDialog(t,i,{value:n,selectValueOnOpen:!0}):i(prompt(o,n))},e.keyMap.default["Alt-G"]="jumpToLine"}(CodeMirror);
 
-			var editor = CodeMirror.fromTextArea(document.getElementById("tinycodeeditor-textcode"),{lineNumbers:true,lineWrapping:true,mode:"text/html",matchBrackets:true,autofocus:true,tabSize:4,indentUnit:0,smartIndent:false,foldGutter:true,gutters:["CodeMirror-linenumbers","CodeMirror-foldgutter"],theme:"monokai"});
+			var editor = CodeMirror.fromTextArea(document.getElementById("tinycodeeditor-textcode"),{lineNumbers:true,lineWrapping:false,mode:"text/html",matchBrackets:true,autofocus:true,tabSize:4,indentUnit:0,smartIndent:false,foldGutter:true,gutters:["CodeMirror-linenumbers","CodeMirror-foldgutter"],theme:"monokai"});
 			var selector = document.getElementById("tinycodeeditor-selector");
 
 			valueFilename = valueFilenameEmpty + ".htm";
