@@ -146,7 +146,7 @@
 					{
 					valueFilename = valueFilenameEmpty + ".htm";
 					document.getElementById("tinycodeeditor-toolbar-filename").innerHTML = valueFilename;
-					newHTML("");
+					newDocument("","text/html",0);
 					}
 				};
 
@@ -180,91 +180,23 @@
 
 					document.getElementById("tinycodeeditor-toolbar-filename").innerHTML = valueFilename;
 					
-					if (extension=="htm")
-						{
-						newHTML(content);
-						}
-					else if (extension=="html")
-						{
-						newHTML(content);
-						}
-					else if (extension=="php")
-						{
-						newPHP(content);
-						}
-					else if (extension=="java")
-						{
-						newJava(content);
-						}
-					else if (extension=="xml")
-						{
-						newXML(content);
-						}
-					else if (extension=="css")
-						{
-						newCSS(content);
-						}
-					else if (extension=="js")
-						{
-						newJavascript(content);
-						}
-					else
-						{
-						newHTML(content);
-						}
+					if (extension=="htm")		{newDocument(content,"text/html",0);}
+					else if (extension=="html")	{newDocument(content,"text/html",0);}
+					else if (extension=="js")	{newDocument(content,"text/javascript",1);}
+					else if (extension=="css")	{newDocument(content,"text/css",2);}
+					else if (extension=="java")	{newDocument(content,"text/x-java",3);}
+					else if (extension=="php")	{newDocument(content,"php",4);}
+					else if (extension=="xml")	{newDocument(content,"application/xml",5);}
+					else						{newDocument(content,"text/html",0);}
+
 					};
 				filereader.readAsText(file);
 				};
 
-			function newHTML(a)
+			function newDocument(a,b,c)
 				{
-				selector.selectedIndex = 0;
-				editor.setOption("mode","text/html");
-				editor.setValue("");
-				editor.setValue(a);
-				editor.focus();
-				}
-
-			function newJavascript(a)
-				{
-				selector.selectedIndex = 1;
-				editor.setOption("mode","text/javascript");
-				editor.setValue("");
-				editor.setValue(a);
-				editor.focus();
-				}
-
-			function newCSS(a)
-				{
-				selector.selectedIndex = 2;
-				editor.setOption("mode","text/css");
-				editor.setValue("");
-				editor.setValue(a);
-				editor.focus();
-				}
-
-			function newJava(a)
-				{
-				selector.selectedIndex = 3;
-				editor.setOption("mode","text/x-java");
-				editor.setValue("");
-				editor.setValue(a);
-				editor.focus();
-				}
-
-			function newPHP(a)
-				{
-				selector.selectedIndex = 4;
-				editor.setOption("mode","php");
-				editor.setValue("");
-				editor.setValue(a);
-				editor.focus();
-				}
-
-			function newXML(a)
-				{
-				selector.selectedIndex = 5;
-				editor.setOption("mode","application/xml");
+				selector.selectedIndex = c;
+				editor.setOption("mode",b);
 				editor.setValue("");
 				editor.setValue(a);
 				editor.focus();
@@ -276,37 +208,18 @@
 				var selectedLanguage = e.options[e.selectedIndex].value;
 				var finalContent = editor.getValue();
 				var changeFileName = valueFilename.indexOf(valueFilenameEmpty + ".");
+				var selectedMode = "";
+				var selectedExtension = "";
 
-				if (selectedLanguage=="html")
-					{
-					editor.setOption("mode","text/html");
-					if (changeFileName>-1){valueFilename = valueFilenameEmpty + ".htm";}
-					}
-				else if (selectedLanguage=="javascript")
-					{
-					editor.setOption("mode","text/javascript");
-					if (changeFileName>-1){valueFilename = valueFilenameEmpty + ".js";}
-					}
-				else if (selectedLanguage=="css")
-					{
-					editor.setOption("mode","text/css");
-					if (changeFileName>-1){valueFilename = valueFilenameEmpty + ".css";}
-					}
-				else if (selectedLanguage=="java")
-					{
-					editor.setOption("mode","text/x-java");
-					if (changeFileName>-1){valueFilename = valueFilenameEmpty + ".java";}
-					}
-				else if (selectedLanguage=="php")
-					{
-					editor.setOption("mode","php");
-					if (changeFileName>-1){valueFilename = valueFilenameEmpty + ".php";}
-					}
-				else if (selectedLanguage=="xml")
-					{
-					editor.setOption("mode","application/xml");
-					if (changeFileName>-1){valueFilename = valueFilenameEmpty + ".xml";}
-					}
+				if (selectedLanguage=="html")				{selectedMode="text/html";selectedExtension=".htm";}
+				else if (selectedLanguage=="javascript")	{selectedMode="text/javascript";selectedExtension=".js";}
+				else if (selectedLanguage=="css")			{selectedMode="text/css";selectedExtension=".css";}
+				else if (selectedLanguage=="java")			{selectedMode="text/x-java";selectedExtension=".java";}
+				else if (selectedLanguage=="php")			{selectedMode="php";selectedExtension=".php";}
+				else if (selectedLanguage=="xml")			{selectedMode="application/xml";selectedExtension=".xml";}
+
+				editor.setOption("mode",selectedMode);
+				if (changeFileName>-1){valueFilename = valueFilenameEmpty + selectedExtension;}
 
 				document.getElementById("tinycodeeditor-toolbar-filename").innerHTML = valueFilename;
 				editor.focus();
