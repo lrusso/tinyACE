@@ -249,20 +249,30 @@
 				document.getElementById("tinycodeeditor-toolbar").style.display = "none";
 				document.getElementsByClassName("CodeMirror")[0].style.paddingTop = "0";
 
-				// HIDING THE BORDER
-				document.getElementsByClassName("CodeMirror-gutters")[0].style.borderRight = "0px solid white";
-
 				// HIDING THE LINE NUMBERS, LINE WRAPPING AND CODE FOLDING
 				editor.setOption("lineWrapping",true);
 				editor.setOption("lineNumbers",false);
 				editor.setOption("foldGutter",false);
+
+				// HIDING REMAINING ELEMENTS
+				var remainingElements = document.getElementsByClassName("CodeMirror-gutters");
+				for(var i = 0; i < remainingElements.length; i++)
+					{
+					try
+						{
+						remainingElements.item(i).style.display = "none";
+						}
+						catch(err)
+						{
+						}
+					}
 				
 				// RESIZING THE EDITOR TO A A4 PAGE SIZE WIDTH
 				editor.setSize(793,"auto");
-				
-				// ADDING A NECESSARY PADDING BOTTOM FOR THE LAST LINE OF CODE
-				document.getElementsByClassName("CodeMirror")[0].style.paddingBottom = "20px";
 
+				// BUG FIX REQUIRED TO PRINT THE LAST LINE OF THE CODE
+				editor.setSize(793,editor.getScrollerElement().clientHeight + 20);
+				
 				// PRINTING THE WINDOW
 				window.print();
 
@@ -270,17 +280,26 @@
 				document.getElementById("tinycodeeditor-toolbar").style.display = "block";
 				document.getElementsByClassName("CodeMirror")[0].style.paddingTop = "45px";
 
-				// RESTORING THE BORDER
-				document.getElementsByClassName("CodeMirror-gutters")[0].style.borderRight = "1px solid #ddd";
-
 				// RESTORING THE LINE NUMBERS, LINE WRAPPING AND CODE FOLDING
 				editor.setOption("lineWrapping",false);
 				editor.setOption("lineNumbers",true);
 				editor.setOption("foldGutter",true);
 
+				// RESTORING REMAINING ELEMENTS
+				var remainingElements = document.getElementsByClassName("CodeMirror-gutters");
+				for(var i = 0; i < remainingElements.length; i++)
+					{
+					try
+						{
+						remainingElements.item(i).style.display = "block";
+						}
+						catch(err)
+						{
+						}
+					}
+
 				// RESTORING THE EDITOR SIZE
 				editor.setSize("auto",null);
-				document.getElementsByClassName("CodeMirror")[0].style.paddingBottom = "0px";
 				resizeEditor();
 				}
 
