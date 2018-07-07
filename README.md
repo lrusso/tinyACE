@@ -4,16 +4,30 @@
 
 https://lrusso.github.io/TinyCodeEditor/TinyCodeEditor.htm
 
-### Controls:
+### Controls (Windows/Linux):
 
-CTRL+N or CMD+N = New document
+CTRL+N = New document
 
-CTRL+O or CMD+O = Open document
+CTRL+O = Open document
 
-CTRL+S or CMD+S = Save document
+CTRL+S = Save document
 
-CTRL+P or CMD+P = Print document
+CTRL+P = Print document
 
-CTRL+F or CMD+F = Find
+CTRL+F = Find
 
-CTRL+R or CMD+R = Find and replace
+CTRL+R = Find and replace
+
+### Controls (Mac):
+
+CMD+N = New document
+
+CMD+O = Open document
+
+CMD+S = Save document
+
+CMD+P = Print document
+
+CMD+F = Find
+
+CMD+R = Find and replace
