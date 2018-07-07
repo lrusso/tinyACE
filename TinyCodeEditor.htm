@@ -210,7 +210,7 @@
 
 					var newLanguage;
 					var newMode;
-					
+
 					if (extension=="htm")		{newLanguage=0;newMode="text/html";}
 					else if (extension=="html")	{newLanguage=0;newMode="text/html";}
 					else if (extension=="js")	{newLanguage=1;newMode="text/javascript";}
@@ -266,7 +266,7 @@
 						{
 						}
 					}
-				
+
 				// RESIZING THE EDITOR IN ORDER TO FIT THE CONTENT INTO A A4 PAGE
 				document.getElementsByClassName("CodeMirror-sizer")[0].style.marginLeft = "0";
 				document.getElementsByClassName("CodeMirror-sizer")[0].style.marginRight = "20px";
@@ -274,7 +274,7 @@
 
 				// BUG FIX REQUIRED TO PRINT THE LAST LINE OF THE DOCUMENT AND THE LAST CHARACTER OF EVERY LINE
 				editor.setSize(editor.getScrollerElement().clientWidth + 20,editor.getScrollerElement().clientHeight + 20);
-				
+
 				// PRINTING THE WINDOW
 				window.print();
 
