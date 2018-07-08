@@ -366,23 +366,6 @@
 				resizeEditor();
 				};
 
-			$(window).keydown(function(event)
-				{
-				if (event.ctrlKey || event.metaKey)
-					{
-					switch (String.fromCharCode(event.which).toLowerCase())
-						{
-						case "f":
-						event.preventDefault();
-            			break;
-
-						case "r":
-						event.preventDefault();
-            			break;
-            			}
-            		}
-				});
-
 			window.addEventListener("click",function(e)
 				{
 				if (e.target.id!="tinycodeeditor-selector" && e.target.id!="tinycodeeditor-search" && e.target.id!="tinycodeeditor-searchAndReplace")
@@ -397,7 +380,7 @@
 				setTimeout(function(){editor.focus();},200);
 				}
 
-			$(window).bind("keydown", function(event)
+			$(window).keydown(function(event)
 				{
 				if (event.ctrlKey || event.metaKey)
 					{
@@ -422,8 +405,16 @@
 						event.preventDefault();
             			menuFilePrint();
             			break;
-        				}
-    				}
+
+						case "f":
+						event.preventDefault();
+            			break;
+
+						case "r":
+						event.preventDefault();
+            			break;
+            			}
+            		}
 				});
 		</script>
 	</body>
