@@ -1,6 +1,6 @@
 # Tiny Code Editor
 
-## Online Web:
+## Web:
 
 https://tinycodeeditor.lrusso.com.ar
 
