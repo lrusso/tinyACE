@@ -2,7 +2,7 @@
 
 ## Demo:
 
-https://lrusso.github.io/TinyCodeEditor/TinyCodeEditor.htm
+https://tinycodeeditor.lrusso.com.ar
 
 ### Controls (Windows/Linux):
 
