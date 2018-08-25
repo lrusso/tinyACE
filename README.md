@@ -4,7 +4,7 @@
 
 https://tinycodeeditor.lrusso.com.ar
 
-### Controls (Windows/Linux):
+## Controls (Windows/Linux):
 
 CTRL+N = New document
 
@@ -18,7 +18,7 @@ CTRL+F = Find
 
 CTRL+R = Find and replace
 
-### Controls (Mac):
+## Controls (Mac):
 
 CMD+N = New document
 
