@@ -1,33 +1,15 @@
 # Tiny Code Editor
 
-## Web:
+## Web
 
 https://tinycodeeditor.lrusso.com.ar
 
-## Controls (Windows/Linux):
-
-CTRL+N = New document
-
-CTRL+O = Open document
-
-CTRL+S = Save document
-
-CTRL+P = Print document
-
-CTRL+F = Find
-
-CTRL+R = Find and replace
-
-## Controls (Mac):
-
-CMD+N = New document
-
-CMD+O = Open document
-
-CMD+S = Save document
-
-CMD+P = Print document
-
-CMD+F = Find
-
-CMD+R = Find and replace
+## Controls
+| Action  | Windows/Linux | Mac |
+| ------------- | ------------- | ------------- |
+| New document  | CTRL+N | CMD+N |
+| Open document  | CTRL+O  | CMD+O |
+| Save document  | CTRL+S  | CMD+S |
+| Print document  | CTRL+P  | CMD+P |
+| Find  | CTRL+F  | CMD+F |
+| Find and replace  | CTRL+R  | CMD+R|
