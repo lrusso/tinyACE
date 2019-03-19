@@ -6,7 +6,7 @@ https://tinycodeeditor.lrusso.com.ar
 
 ## Controls
 | Action  | Windows/Linux | Mac |
-| ------------- | ------------- | ------------- |
+| ------------- | :-------------: | :-------------: |
 | New document  | CTRL+N | CMD+N |
 | Open document  | CTRL+O  | CMD+O |
 | Save document  | CTRL+S  | CMD+S |
