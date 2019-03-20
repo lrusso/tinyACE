@@ -21,6 +21,7 @@ https://tinycodeeditor.lrusso.com.ar
 | :------------ | :--------------- |
 | this.EOF_CHAR = "\xB6"; | this.EOF_CHAR = ""; |
 | this.EOL_CHAR_LF = "\xAC"; | this.EOL_CHAR_LF = ""; |
+| this.EOL_CHAR_CRLF = "\xa4"; | this.EOL_CHAR_CRLF = ""; |
 
 The reason of this is to prevent from showing/marking breaklines in the document.
 
