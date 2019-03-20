@@ -14,3 +14,10 @@ https://tinycodeeditor.lrusso.com.ar
 - Java
 - PHP
 - XML
+
+## The following lines has been edited
+
+| BEFORE  | AFTER  |
+| :------------ | :--------------- |
+| this.EOF_CHAR = "\xB6"; | this.EOF_CHAR = ""; |
+| this.EOL_CHAR_LF = "\xAC"; | this.EOL_CHAR_LF = ""; |
