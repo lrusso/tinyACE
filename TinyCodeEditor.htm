@@ -178,6 +178,7 @@
 					document.getElementById("buttonRedo").classList.add("menubar_button_redo_disabled");
 					document.getElementById("buttonRedo").classList.remove("menubar_button_redo_enabled");
 					try{editor.searchBox.hide();}catch(err){}
+					editor.scrollToLine(0,true,true,function(){});
 					editor.focus();
 					};
 				filereader.readAsText(file);
