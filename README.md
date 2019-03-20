@@ -25,7 +25,7 @@ https://tinycodeeditor.lrusso.com.ar
 
 The reason of this is to prevent from showing/marking breaklines in the document.
 
-## Sample code for handle editor height
+## Sample code for handle the editor height
 
 CSS code
 ```
