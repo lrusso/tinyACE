@@ -57,3 +57,6 @@ window.onload = function()
     resizeTinyCodeEditor();
     };
 ```
+
+## Core files:
+https://github.com/ajaxorg/ace-builds
