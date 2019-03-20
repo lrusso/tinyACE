@@ -23,3 +23,37 @@ https://tinycodeeditor.lrusso.com.ar
 | this.EOL_CHAR_LF = "\xAC"; | this.EOL_CHAR_LF = ""; |
 
 The reason of this is to prevent from showing/marking breaklines in the document.
+
+## Sample code for handle editor height
+
+CSS
+```
+#tinycodeeditor-textcode-container{width:100%;height:100px;display:block;position:relative;padding:0;margin:0}
+#tinycodeeditor-textcode{position:absolute;top:0;right:0;bottom:0;left:0;}
+```
+
+HTML
+```
+<div id="tinycodeeditor-textcode-container"><div id="tinycodeeditor-textcode"></div></div>
+```
+
+JavaScript
+```
+function resizeTinyACE()
+    {
+    var w = window, d = document, e = d.documentElement, g = d.getElementsByTagName("body")[0], x = w.innerWidth || e.clientWidth || g.clientWidth, y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+    var editHeight = y - 156;
+    document.getElementById('tinycodeeditor-textcode-container').style.height = editHeight.toString() + "px";
+    editor.resize();
+    };
+
+window.onresize = function()
+    {
+    resizeTinyACE();
+    };
+
+window.onload = function()
+    {
+    resizeTinyACE();
+    };
+```
