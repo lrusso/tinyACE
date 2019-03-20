@@ -14,7 +14,7 @@ https://tinycodeeditor.lrusso.com.ar
 | Updated | ace.js | this.EOL_CHAR_LF = "\xAC"; | this.EOL_CHAR_LF = ""; |
 | Updated | ace.js | this.EOL_CHAR_CRLF = "\xa4"; | this.EOL_CHAR_CRLF = ""; |
 | Updated | ext-searchbox.js | English only. | English and Spanish. |
-| Updated | theme-monokai.js | Color theme more like Sublime Text 3. |
+| Updated | theme-monokai.js | Original theme. | More like Sublime Text 3. |
 
 The reason of this is to prevent from showing/marking breaklines in the document.
 
