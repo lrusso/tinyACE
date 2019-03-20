@@ -25,7 +25,8 @@
 			.tinycodeeditor_buttonHidden{display:none;}
 			#tinycodeeditor_selector{float:left;background-color:white;border:1px solid silver;font-family:Arial;font-size:13px;height:22px;width:105px;margin-left:10px;margin-right:0px;margin-top:8px;}
 			#tinycodeeditor_filename{float:left;font-family:Arial;font-size:13px;line-height:37px;margin-left:10px;margin-right:0px;cursor:default;-webkit-user-select:none;-moz-user-select:none;user-select:none;vertical-align:middle;}
-			#tinycodeeditor_textcode{position:absolute;top:57px;right:0;bottom:0;left:0;}
+			#tinycodeeditor_textcode_container{width:100%;height:100px;display:block;position:relative;padding:0;margin:0}
+			#tinycodeeditor_textcode{position:absolute;top:0;right:0;bottom:0;left:0;}
 		</style>
 	</head>
 	<body>
@@ -84,7 +85,7 @@
 					<div id="tinycodeeditor_filename" onclick="editor.focus()"><script>document.write(STRING_FILENAME_EMPTY + ".htm");</script></div>
 				</div>
 			</div>
-		<div id="tinycodeeditor_textcode"></div>
+		<div id="tinycodeeditor_textcode_container"><div id="tinycodeeditor_textcode"></div></div>
 
 		<script src="tinyCodeEditor.js"></script>
 		<script>
@@ -311,6 +312,24 @@
 					{
 					}
 				}
+
+			function resizeTinyCodeEditor()
+				{
+				var w = window, d = document, e = d.documentElement, g = d.getElementsByTagName("body")[0], x = w.innerWidth || e.clientWidth || g.clientWidth, y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+				var editHeight = y - 57; // OR SOME VALUE THAT YOU WANT
+				document.getElementById("tinycodeeditor_textcode_container").style.height = editHeight.toString() + "px";
+				editor.resize();
+				};
+
+			window.onresize = function()
+				{
+				resizeTinyCodeEditor();
+				};
+
+			window.onload = function()
+				{
+				resizeTinyCodeEditor();
+				};
 		</script>
 	</body>
 </html>
