@@ -139,7 +139,14 @@
 					document.getElementById("buttonRedo").classList.add("menubar_button_redo_disabled");
 					document.getElementById("buttonRedo").classList.remove("menubar_button_redo_enabled");
 					try{editor.searchBox.hide();}catch(err){}
+					}
+
+				try
+					{
 					editor.focus();
+					}
+					catch(err)
+					{
 					}
 				}
 
@@ -194,7 +201,25 @@
 				link.href = URL.createObjectURL(blobValue);
 				link.download = filename || "data.json";
 				link.click();
-				editor.focus();
+				try
+					{
+					editor.session.getUndoManager().reset();
+					document.getElementById("buttonUndo").classList.add("menubar_button_undo_disabled");
+					document.getElementById("buttonUndo").classList.remove("menubar_button_undo_enabled");
+					document.getElementById("buttonRedo").classList.add("menubar_button_redo_disabled");
+					document.getElementById("buttonRedo").classList.remove("menubar_button_redo_enabled");
+					editor.searchBox.hide();
+					}
+					catch(err)
+					{
+					}
+				try
+					{
+					editor.focus();
+					}
+					catch(err)
+					{
+					}
 				}
 
 			function menuSearch()
