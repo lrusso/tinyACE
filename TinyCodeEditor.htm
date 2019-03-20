@@ -96,7 +96,7 @@
 
 			ace.config.set("basePath",".");
 			var editor = ace.edit("tinycodeeditor-textcode");
-			editor.setOptions({fontSize:"14px",showPrintMargin:false});
+			editor.setOptions({fontSize:"14px",showPrintMargin:false,showInvisibles:true,tabSize:4,useSoftTabs:false,highlightActiveLine:false});
 			editor.commands.removeCommand("gotoline");
 			editor.session.setMode("ace/mode/html");
 			editor.session.setUseWorker(false);
@@ -109,6 +109,10 @@
 				{
 				document.getElementById("buttonUndo").classList.add("menubar_button_undo_enabled");
 				document.getElementById("buttonUndo").classList.remove("menubar_button_undo_disabled");
+				});
+			editor.getSession().on("keydown", function(e)
+				{
+				editor.indent();
 				});
 
 			function menuNewFile()

@@ -14,7 +14,7 @@ overflow: hidden;\
 margin: 0;\
 padding: 4px 6px 0 4px;\
 position: absolute;\
-top: 1px;\
+top: 0;\
 z-index: 99;\
 white-space: normal;\
 }\
