@@ -39,7 +39,7 @@ HTML
 
 JavaScript
 ```
-function resizeTinyACE()
+function resizeTinyCodeEditor()
     {
     var w = window, d = document, e = d.documentElement, g = d.getElementsByTagName("body")[0], x = w.innerWidth || e.clientWidth || g.clientWidth, y = w.innerHeight|| e.clientHeight|| g.clientHeight;
     var editHeight = y - 156;
@@ -49,11 +49,11 @@ function resizeTinyACE()
 
 window.onresize = function()
     {
-    resizeTinyACE();
+    resizeTinyCodeEditor();
     };
 
 window.onload = function()
     {
-    resizeTinyACE();
+    resizeTinyCodeEditor();
     };
 ```
