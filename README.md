@@ -59,5 +59,5 @@ window.onload = function()
     };
 ```
 
-## Core files:
+## Core files
 https://github.com/ajaxorg/ace-builds
