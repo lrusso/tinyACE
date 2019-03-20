@@ -16,7 +16,7 @@ https://tinycodeeditor.lrusso.com.ar
 | ext-searchbox.js | English only. | English and Spanish. |
 | theme-monokai.js | Original theme. | More like Sublime Text 3 theme. |
 
-The ace.js was modified in order to prevent from showing/marking breaklines in the document.
+The ace.js file was modified in order to prevent from showing/marking breaklines in the document.
 
 ## Core files
 https://github.com/ajaxorg/ace-builds
