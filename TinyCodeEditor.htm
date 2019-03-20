@@ -56,7 +56,7 @@
 					<div class="menubar_button_new_enabled" onclick="menuNewFile()"></div>
 				</div>
 				<div class="menubar_holder">
-					<label for="fileOpener">
+					<label for="fileOpener" onclick="focusEditor()">
 						<span class="menubar_button_open_enabled">&nbsp;</span>
 					</label>
 					<input type="file" class="menubar_buttonHidden" id="fileOpener" onChange="menuOpenFile(document.getElementById('fileOpener').files[0]);">
@@ -271,6 +271,17 @@
 					document.getElementById("tinycodeeditor-filename").innerHTML = STRING_FILENAME;
 
 					editor.session.setMode("ace/mode/" + selectedLanguage);
+					editor.focus();
+					}
+					catch(err)
+					{
+					}
+				}
+
+			function focusEditor()
+				{
+				try
+					{
 					editor.focus();
 					}
 					catch(err)
