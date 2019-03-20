@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="header_html" lang="en">
 	<head>
-		<meta charset="utf-8"/>
+		<meta charset="UTF-8">
 		<title>Tiny Code Editor</title>
 		<style>
 			html,body{height:100%;margin:0;padding:0;background-color:white;}
@@ -184,7 +184,7 @@
 					editor.scrollToLine(0,true,true,function(){});
 					editor.focus();
 					};
-				filereader.readAsText(file);
+				filereader.readAsText(file,"ISO-8859-1");
 				};
 
 			function menuSaveFile()
