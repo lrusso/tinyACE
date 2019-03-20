@@ -8,11 +8,11 @@ https://tinycodeeditor.lrusso.com.ar
 
 ## Based on Ace Code Editor with several modifications
 
-| TYPE | ELEMENT | DETAILS |
-| :------------: | :------------: | :------------ |
-| Updated | ace.js | Changed **this.EOF_CHAR = "\xB6";** for **this.EOF_CHAR = "";** |
-| Updated | ace.js | Changed **this.EOL_CHAR_LF = "\xAC";** for **this.EOL_CHAR_LF = "";** |
-| Updated | ace.js | Changed **this.EOL_CHAR_CRLF = "\xa4";** for **this.EOL_CHAR_CRLF = "";** |
+| TYPE | ELEMENT | BEFORE | AFTER |
+| :------------: | :------------: | :------------ | :------------ |
+| Updated | ace.js | this.EOF_CHAR = "\xB6"; | this.EOF_CHAR = ""; |
+| Updated | ace.js | this.EOL_CHAR_LF = "\xAC"; | this.EOL_CHAR_LF = ""; |
+| Updated | ace.js | this.EOL_CHAR_CRLF = "\xa4"; | this.EOL_CHAR_CRLF = ""; |
 | Updated | ext-searchbox.js | Spanish language compatible. |
 | Updated | theme-monokai.js | Color theme more like Sublime Text 3. |
 
