@@ -138,6 +138,7 @@
 					document.getElementById("buttonUndo").classList.remove("menubar_button_undo_enabled");
 					document.getElementById("buttonRedo").classList.add("menubar_button_redo_disabled");
 					document.getElementById("buttonRedo").classList.remove("menubar_button_redo_enabled");
+					try{editor.searchBox.hide();}catch(err){}
 					editor.focus();
 					}
 				}
@@ -176,6 +177,7 @@
 					document.getElementById("buttonUndo").classList.remove("menubar_button_undo_enabled");
 					document.getElementById("buttonRedo").classList.add("menubar_button_redo_disabled");
 					document.getElementById("buttonRedo").classList.remove("menubar_button_redo_enabled");
+					try{editor.searchBox.hide();}catch(err){}
 					editor.focus();
 					};
 				filereader.readAsText(file);
