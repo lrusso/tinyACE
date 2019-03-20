@@ -22,4 +22,4 @@ https://tinycodeeditor.lrusso.com.ar
 | this.EOF_CHAR = "\xB6"; | this.EOF_CHAR = ""; |
 | this.EOL_CHAR_LF = "\xAC"; | this.EOL_CHAR_LF = ""; |
 
-The reason of this is to prevent from pointing breaklines in the document.
+The reason of this is to prevent from showing/marking breaklines in the document.
