@@ -99,6 +99,7 @@
 			editor.setOptions({fontSize:"14px",showPrintMargin:false,showInvisibles:true,tabSize:4,useSoftTabs:false,highlightActiveLine:false});
 			editor.commands.removeCommand("gotoline");
 			editor.session.setMode("ace/mode/html");
+			editor.setTheme("ace/theme/monokai");
 			editor.session.setUseWorker(false);
 			editor.setValue(STRING_WELCOME);
 			editor.clearSelection();
