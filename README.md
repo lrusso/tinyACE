@@ -26,18 +26,18 @@ The reason of this is to prevent from showing/marking breaklines in the document
 
 ## Sample code for handle editor height
 
-CSS
+CSS code
 ```
 #tinycodeeditor-textcode-container{width:100%;height:100px;display:block;position:relative;padding:0;margin:0}
 #tinycodeeditor-textcode{position:absolute;top:0;right:0;bottom:0;left:0;}
 ```
 
-HTML
+HTML code
 ```
 <div id="tinycodeeditor-textcode-container"><div id="tinycodeeditor-textcode"></div></div>
 ```
 
-JavaScript
+JavaScript code
 ```
 function resizeTinyCodeEditor()
     {
