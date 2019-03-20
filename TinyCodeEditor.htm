@@ -110,10 +110,6 @@
 				document.getElementById("buttonUndo").classList.add("menubar_button_undo_enabled");
 				document.getElementById("buttonUndo").classList.remove("menubar_button_undo_disabled");
 				});
-			editor.getSession().on("keydown", function(e)
-				{
-				editor.indent();
-				});
 
 			function menuNewFile()
 				{
@@ -201,6 +197,7 @@
 				link.href = URL.createObjectURL(blobValue);
 				link.download = filename || "data.json";
 				link.click();
+
 				try
 					{
 					editor.session.getUndoManager().reset();
