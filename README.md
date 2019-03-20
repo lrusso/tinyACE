@@ -6,22 +6,15 @@ Tiny Code Editor based on Ace Code Editor. Allows the programmer to open a file 
 
 https://tinycodeeditor.lrusso.com.ar
 
-## Compatible languages or file types
+## Based on Ace Code Editor with several modifications
 
-- HTML
-- JavaScript
-- CSS
-- Java
-- PHP
-- XML
-
-## The following lines has been edited from ace.js
-
-| BEFORE  | AFTER  |
-| :------------ | :--------------- |
-| this.EOF_CHAR = "\xB6"; | this.EOF_CHAR = ""; |
-| this.EOL_CHAR_LF = "\xAC"; | this.EOL_CHAR_LF = ""; |
-| this.EOL_CHAR_CRLF = "\xa4"; | this.EOL_CHAR_CRLF = ""; |
+| TYPE | ELEMENT | DETAILS |
+| :------------: | :------------: | :------------ |
+| Updated | ace.js | Changed **this.EOF_CHAR = "\xB6";** for **this.EOF_CHAR = "";** |
+| Updated | ace.js | Changed **this.EOL_CHAR_LF = "\xAC";** for **this.EOL_CHAR_LF = "";** |
+| Updated | ace.js | Changed **this.EOL_CHAR_CRLF = "\xa4";** for **this.EOL_CHAR_CRLF = "";** |
+| Updated | ext-searchbox.js | Spanish language compatible. |
+| Updated | theme-monokai.js | Color theme more like Sublime Text 3. |
 
 The reason of this is to prevent from showing/marking breaklines in the document.
 
