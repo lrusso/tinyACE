@@ -110,6 +110,7 @@
 			editor.focus();
 			editor.getSession().on("change", function()
 				{
+				window.onbeforeunload = function(e){return "changed";};
 				document.getElementById("buttonUndo").classList.add("tinycodeeditor_button_undo_enabled");
 				document.getElementById("buttonUndo").classList.remove("tinycodeeditor_button_undo_disabled");
 				});
@@ -138,6 +139,7 @@
 					document.getElementById("buttonRedo").classList.add("tinycodeeditor_button_redo_disabled");
 					document.getElementById("buttonRedo").classList.remove("tinycodeeditor_button_redo_enabled");
 					try{editor.searchBox.hide();}catch(err){}
+					window.onbeforeunload = null;
 					}
 
 				try
@@ -184,6 +186,7 @@
 					document.getElementById("buttonRedo").classList.add("tinycodeeditor_button_redo_disabled");
 					document.getElementById("buttonRedo").classList.remove("tinycodeeditor_button_redo_enabled");
 					try{editor.searchBox.hide();}catch(err){}
+					window.onbeforeunload = null;
 					editor.scrollToLine(0,true,true,function(){});
 					editor.focus();
 					};
@@ -208,13 +211,8 @@
 					document.getElementById("buttonUndo").classList.remove("tinycodeeditor_button_undo_enabled");
 					document.getElementById("buttonRedo").classList.add("tinycodeeditor_button_redo_disabled");
 					document.getElementById("buttonRedo").classList.remove("tinycodeeditor_button_redo_enabled");
-					editor.searchBox.hide();
-					}
-					catch(err)
-					{
-					}
-				try
-					{
+					try{editor.searchBox.hide();}catch(err){}
+					window.onbeforeunload = null;
 					editor.focus();
 					}
 					catch(err)
