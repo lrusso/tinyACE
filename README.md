@@ -4,7 +4,7 @@ Tiny Code Editor based on Ace Code Editor. Allows the programmer to open a file 
 
 ## Web
 
-https://lrusso.github.io/tinyACE/demo.htm
+https://lrusso.github.io/tinyACE/tinyACE.htm
 
 ## Based on Ace Code Editor with several modifications
 
