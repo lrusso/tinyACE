@@ -62,7 +62,7 @@
 				</div>
 				<div class="tinyace_separator"></div>
 				<div class="tinyace_holder">
-					<select id="tinyace_selector" onchange="menuLanguage()"><option selected value="html">HTML</option><option value="javascript">JavaScript</option><option value="css">CSS</option><option value="java">Java</option><option value="php">PHP</option><option value="xml">XML</option><option value="c_cpp">C / C++</option></select>
+					<select id="tinyace_selector" onchange="menuLanguage()"><option selected value="html">HTML</option><option value="javascript">JavaScript</option><option value="css">CSS</option><option value="java">Java</option><option value="php">PHP</option><option value="xml">XML</option><option value="c_cpp">C / C++</option><option value="c_cpp">Arduino</option></select>
 				</div>
 				<div class="tinyace_separator"></div>
 				<div class="tinyace_holder">
@@ -156,7 +156,8 @@
 					else if (extension=="java")						{newLanguage = 3;}
 					else if (extension=="php")						{newLanguage = 4;}
 					else if (extension=="xml")						{newLanguage = 5;}
-					else if (extension=="c" || extension=="ino")	{newLanguage = 6;}
+					else if (extension=="c")						{newLanguage = 6;}
+					else if (extension=="ino")						{newLanguage = 7;}
 					else											{newLanguage = 0;}
 					selector.selectedIndex = newLanguage;
 					var selectedLanguage = selector.options[selector.selectedIndex].value;
@@ -277,6 +278,7 @@
 					else if (selectedLanguage=="php")			{selectedExtension=".php";}
 					else if (selectedLanguage=="xml")			{selectedExtension=".xml";}
 					else if (selectedLanguage=="c_cpp")			{selectedExtension=".c";}
+					if (selector.selectedIndex==7)			{selectedExtension=".ino";}
 					if (changeFileName>-1){STRING_FILENAME = STRING_FILENAME_EMPTY + selectedExtension;}
 					document.getElementById("tinyace_filename").innerHTML = STRING_FILENAME;
 
