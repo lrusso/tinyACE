@@ -1,6 +1,6 @@
 # TinyACE Editor
 
-TinyACE Editor based on Ace Code Editor. Allows the programmer to open a file of the computer, work on it online with this tool and then download it to the computer in order to update the local version of that file. Works with HTML, Java, JavaScript, PHP, CSS and XML files.
+TinyACE Editor based on Ace Code Editor. Allows the programmer to open a file of the computer, work on it online with this tool and then download it to the computer in order to update the local version of that file. Works with HTML, Java, JavaScript, PHP, CSS, C and INO files.
 
 ## Web
 
