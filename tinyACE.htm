@@ -60,7 +60,7 @@
 				</div>
 				<div class="tinyace_separator"></div>
 				<div class="tinyace_holder">
-					<select id="tinyace_selector"><option selected value="html">HTML</option><option value="javascript">JavaScript</option><option value="css">CSS</option><option value="java">Java</option><option value="php">PHP</option><option value="xml">XML</option><option value="c_cpp">C / C++</option><option value="c_cpp">Arduino</option></select>
+					<select id="tinyace_selector" disabled><option selected value="html">HTML</option><option value="javascript">JavaScript</option><option value="css">CSS</option><option value="java">Java</option><option value="php">PHP</option><option value="xml">XML</option><option value="c_cpp">C / C++</option><option value="c_cpp">Arduino</option></select>
 				</div>
 				<div class="tinyace_separator"></div>
 				<div class="tinyace_holder">
@@ -367,6 +367,7 @@
 				document.getElementById("buttonRedo").addEventListener("click",function(event){menuRedo()});
 				document.getElementById("buttonSearch").addEventListener("click",function(event){menuSearch()});
 				document.getElementById("buttonFullScreen").addEventListener("click",function(event){menuFullScreen()});
+				document.getElementById("tinyace_selector").disabled = false;
 				document.getElementById("tinyace_selector").addEventListener("change",function(event){menuLanguage()});
 				document.getElementById("tinyace_filename").addEventListener("click",function(event){editor.focus()});
 				};
