@@ -1,5 +1,7 @@
 # TinyACE Editor
 
+![alt screenshot](https://raw.githubusercontent.com/lrusso/tinyACE/master/tinyACE.png)
+
 TinyACE Editor based on Ace Code Editor. Allows the programmer to open a file of the computer, work on it online with this tool and then download it to the computer in order to update the local version of that file. Works with HTML, Java, JavaScript, PHP, CSS, C and Arduino files.
 
 ## Web
