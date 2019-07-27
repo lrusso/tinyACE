@@ -60,9 +60,20 @@
 				</div>
 				<div class="tinyace_separator"></div>
 				<div class="tinyace_holder">
-					<select id="tinyace_selector" disabled><option selected value="html">HTML</option><option value="javascript">JavaScript</option><option value="css">CSS</option><option value="java">Java</option><option value="php">PHP</option><option value="xml">XML</option><option value="c_cpp">C / C++</option><option value="c_cpp">Arduino</option></select>
+					<div class="tinyace_dropdown">
+						<div class="tinyace_dropdown_button" id="tinyace_language">HTML</div>
+						<div id="myDropdown" class="tinyace_dropdown_content">
+							<span onclick="menuLanguage('html')">HTML</span>
+							<span onclick="menuLanguage('javascript')">JavaScript</span>
+							<span onclick="menuLanguage('css')">CSS</span>
+							<span onclick="menuLanguage('java')">Java</span>
+							<span onclick="menuLanguage('php')">PHP</span>
+							<span onclick="menuLanguage('xml')">XML</span>
+							<span onclick="menuLanguage('c')">C / C++</span>
+							<span onclick="menuLanguage('arduino')">Arduino</span>
+						</div>
+					</div>
 				</div>
-				<div class="tinyace_separator"></div>
 				<div class="tinyace_holder">
 					<div id="tinyace_filename"><script>document.write(STRING_FILENAME_EMPTY + ".htm");</script></div>
 				</div>
@@ -74,9 +85,6 @@
 		<script>
 
 			document.getElementById("tinyace_filename").innerHTML = STRING_FILENAME;
-
-			var selector = document.getElementById("tinyace_selector");
-			selector.selectedIndex = 0;
 
 			ace.config.set("basePath",".");
 			var editor = ace.edit("tinyace_textcode");
@@ -110,7 +118,7 @@
 					{
 					STRING_FILENAME = STRING_FILENAME_EMPTY + ".htm";
 					document.getElementById("tinyace_filename").innerHTML = STRING_FILENAME;
-					selector.selectedIndex = 0;
+					document.getElementById("tinyace_language").innerHTML = "HTML";
 					editor.setValue("");
 					editor.session.setMode("ace/mode/html");
 					editor.clearSelection();
@@ -153,21 +161,21 @@
 						var content = this.result;
 						document.getElementById("tinyace_filename").innerHTML = STRING_FILENAME;
 
-						editor.clearSelection();
-						editor.selection.moveTo(0,0);
-
 						var newLanguage;
-						if (extension=="htm" || extension=="html")		{newLanguage = 0;}
-						else if (extension=="js")						{newLanguage = 1;}
-						else if (extension=="css")						{newLanguage = 2;}
-						else if (extension=="java")						{newLanguage = 3;}
-						else if (extension=="php")						{newLanguage = 4;}
-						else if (extension=="xml")						{newLanguage = 5;}
-						else if (extension=="c")						{newLanguage = 6;}
-						else if (extension=="ino")						{newLanguage = 7;}
-						else											{newLanguage = 0;}
-						selector.selectedIndex = newLanguage;
-						var selectedLanguage = selector.options[selector.selectedIndex].value;
+						var selectedLanguage;
+
+						if (extension=="htm" || extension=="html")		{newLanguage = "HTML";selectedLanguage="html";}
+						else if (extension=="js")						{newLanguage = "JavaScript";selectedLanguage="javascript";}
+						else if (extension=="css")						{newLanguage = "CSS";selectedLanguage="css";}
+						else if (extension=="java")						{newLanguage = "Java";selectedLanguage="java";}
+						else if (extension=="php")						{newLanguage = "PHP";selectedLanguage="php";}
+						else if (extension=="xml")						{newLanguage = "XML";selectedLanguage="xml";}
+						else if (extension=="c")						{newLanguage = "C";selectedLanguage="c_cpp";}
+						else if (extension=="ino")						{newLanguage = "Arduino";selectedLanguage="c_cpp";}
+						else											{newLanguage = "HTML";selectedLanguage="html";}
+
+						document.getElementById("tinyace_language").innerHTML = newLanguage;
+
 						editor.session.setMode("ace/mode/" + selectedLanguage);
 
 						editor.setValue(content);
@@ -272,24 +280,26 @@
 					}
 				}
 
-			function menuLanguage()
+			function menuLanguage(selectedLanguage)
 				{
 				try
 					{
-					var selectedLanguage = selector.options[selector.selectedIndex].value;
 					var changeFileName = STRING_FILENAME.indexOf(STRING_FILENAME_EMPTY + ".");
 
 					var selectedExtension = "";
-					if (selectedLanguage=="html")				{selectedExtension=".htm";}
-					else if (selectedLanguage=="javascript")	{selectedExtension=".js";}
-					else if (selectedLanguage=="css")			{selectedExtension=".css";}
-					else if (selectedLanguage=="java")			{selectedExtension=".java";}
-					else if (selectedLanguage=="php")			{selectedExtension=".php";}
-					else if (selectedLanguage=="xml")			{selectedExtension=".xml";}
-					else if (selectedLanguage=="c_cpp")			{selectedExtension=".c";}
-					if (selector.selectedIndex==7)				{selectedExtension=".ino";}
+					var selectedLanguageLabel = "";
+					if (selectedLanguage=="html")				{selectedExtension=".htm";selectedLanguageLabel="HTML";}
+					else if (selectedLanguage=="javascript")	{selectedExtension=".js";selectedLanguageLabel="JavaScript";}
+					else if (selectedLanguage=="css")			{selectedExtension=".css";selectedLanguageLabel="CSS";}
+					else if (selectedLanguage=="java")			{selectedExtension=".java";selectedLanguageLabel="Java";}
+					else if (selectedLanguage=="php")			{selectedExtension=".php";selectedLanguageLabel="PHP";}
+					else if (selectedLanguage=="xml")			{selectedExtension=".xml";selectedLanguageLabel="XML";}
+					else if (selectedLanguage=="c")				{selectedExtension=".c";selectedLanguage="c_cpp";selectedLanguageLabel="C";}
+					else if (selectedLanguage=="arduino")		{selectedExtension=".ino";selectedLanguage="c_cpp";selectedLanguageLabel="Arduino";}
 					if (changeFileName>-1){STRING_FILENAME = STRING_FILENAME_EMPTY + selectedExtension;}
+
 					document.getElementById("tinyace_filename").innerHTML = STRING_FILENAME;
+					document.getElementById("tinyace_language").innerHTML = selectedLanguageLabel;
 
 					editor.session.setMode("ace/mode/" + selectedLanguage);
 					editor.focus();
@@ -352,6 +362,11 @@
 				editor.focus();
 				};
 
+			function showDropDownMenu()
+				{
+				document.getElementById("myDropdown").classList.toggle("tinyace_dropdown_show");
+				}
+
 			window.onresize = function()
 				{
 				resizeTinyCodeEditor();
@@ -367,10 +382,27 @@
 				document.getElementById("buttonRedo").addEventListener("click",function(event){menuRedo()});
 				document.getElementById("buttonSearch").addEventListener("click",function(event){menuSearch()});
 				document.getElementById("buttonFullScreen").addEventListener("click",function(event){menuFullScreen()});
-				document.getElementById("tinyace_selector").disabled = false;
-				document.getElementById("tinyace_selector").addEventListener("change",function(event){menuLanguage()});
+				document.getElementById("tinyace_language").addEventListener("click",function(event){showDropDownMenu()});
 				document.getElementById("tinyace_filename").addEventListener("click",function(event){editor.focus()});
 				};
+
+			window.onclick = function(event)
+				{
+				if (!event.target.matches(".tinyace_dropdown_button"))
+					{
+					var dropdowns = document.getElementsByClassName("tinyace_dropdown_content");
+					for (var i = 0; i < dropdowns.length; i++)
+						{
+						var openDropdown = dropdowns[i];
+						if (openDropdown.classList.contains("tinyace_dropdown_show"))
+							{
+							openDropdown.classList.remove("tinyace_dropdown_show");
+							editor.focus();
+							setTimeout(function(){editor.focus();},200);
+							}
+						}
+					}
+				}
 		</script>
 	</body>
 </html>
