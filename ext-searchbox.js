@@ -6,7 +6,7 @@ var lang = require("../lib/lang");
 var event = require("../lib/event");
 var searchboxCss = "\
 .ace_search {\
-background-color: #ddd;\
+background-color: #F2F2F2;\
 color: #666;\
 border: 1px solid #cbcbcb;\
 border-top: 0 none;\
