@@ -17,6 +17,7 @@ position: absolute;\
 top: 0;\
 z-index: 99;\
 white-space: normal;\
+cursor: default;\
 }\
 .ace_search.left {\
 border-left: 0 none;\
