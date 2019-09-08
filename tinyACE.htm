@@ -32,55 +32,50 @@
 				}
 		</script>
 
-		<div id="tinyace_fullscreener">
-			<div class="tinyace_menubar">
-				<div class="tinyace_holder">
-					<div class="tinyace_button_new_enabled" id="buttonNew"></div>
-				</div>
-				<div class="tinyace_holder">
-					<div class="tinyace_button_open_enabled" id="buttonOpen"></div>
-					<input type="file" class="tinyace_buttonHidden" id="fileOpener" onChange="menuOpenFile(document.getElementById('fileOpener').files[0]);">
-				</div>
-				<div class="tinyace_holder">
-					<div class="tinyace_button_save_enabled" id="buttonSave"></div>
-				</div>
-				<div class="tinyace_separator"></div>
-				<div class="tinyace_holder">
-					<div class="tinyace_button_undo_disabled" id="buttonUndo"></div>
-				</div>
-				<div class="tinyace_holder">
-					<div class="tinyace_button_redo_disabled" id="buttonRedo"></div>
-				</div>
-				<div class="tinyace_separator"></div>
-				<div class="tinyace_holder">
-					<div class="tinyace_button_search_enabled" id="buttonSearch"></div>
-				</div>
-				<div class="tinyace_holder">
-					<div class="tinyace_button_fullscreen_disabled" id="buttonFullScreen"></div>
-				</div>
-				<div class="tinyace_separator"></div>
-				<div class="tinyace_holder">
-					<div class="tinyace_dropdown">
-						<div class="tinyace_dropdown_button" id="tinyace_language">HTML</div>
-						<div id="myDropdown" class="tinyace_dropdown_content">
-							<span onclick="menuLanguage('html')">HTML</span>
-							<span onclick="menuLanguage('javascript')">JavaScript</span>
-							<span onclick="menuLanguage('css')">CSS</span>
-							<span onclick="menuLanguage('java')">Java</span>
-							<span onclick="menuLanguage('php')">PHP</span>
-							<span onclick="menuLanguage('xml')">XML</span>
-							<span onclick="menuLanguage('c')">C / C++</span>
-							<span onclick="menuLanguage('arduino')">Arduino</span>
-						</div>
+		<div class="tinyace_menubar">
+			<div class="tinyace_holder">
+				<div class="tinyace_button_new_enabled" id="buttonNew"></div>
+			</div>
+			<div class="tinyace_holder">
+				<div class="tinyace_button_open_enabled" id="buttonOpen"></div>
+				<input type="file" class="tinyace_buttonHidden" id="fileOpener" onChange="menuOpenFile(document.getElementById('fileOpener').files[0]);">
+			</div>
+			<div class="tinyace_holder">
+				<div class="tinyace_button_save_enabled" id="buttonSave"></div>
+			</div>
+			<div class="tinyace_separator"></div>
+			<div class="tinyace_holder">
+				<div class="tinyace_button_undo_disabled" id="buttonUndo"></div>
+			</div>
+			<div class="tinyace_holder">
+				<div class="tinyace_button_redo_disabled" id="buttonRedo"></div>
+			</div>
+			<div class="tinyace_separator"></div>
+			<div class="tinyace_holder">
+				<div class="tinyace_button_search_enabled" id="buttonSearch"></div>
+			</div>
+			<div class="tinyace_separator"></div>
+			<div class="tinyace_holder">
+				<div class="tinyace_dropdown">
+					<div class="tinyace_dropdown_button" id="tinyace_language">HTML</div>
+					<div id="myDropdown" class="tinyace_dropdown_content">
+						<span onclick="menuLanguage('html')">HTML</span>
+						<span onclick="menuLanguage('javascript')">JavaScript</span>
+						<span onclick="menuLanguage('css')">CSS</span>
+						<span onclick="menuLanguage('java')">Java</span>
+						<span onclick="menuLanguage('php')">PHP</span>
+						<span onclick="menuLanguage('xml')">XML</span>
+						<span onclick="menuLanguage('c')">C / C++</span>
+						<span onclick="menuLanguage('arduino')">Arduino</span>
 					</div>
 				</div>
-				<div class="tinyace_separator2"></div>
-				<div class="tinyace_holder">
-					<div id="tinyace_filename"><script>document.write(STRING_FILENAME_EMPTY + ".htm");</script></div>
-				</div>
 			</div>
-			<div id="tinyace_textcode_container"><div id="tinyace_textcode"></div></div>
+			<div class="tinyace_separator2"></div>
+			<div class="tinyace_holder">
+				<div id="tinyace_filename"><script>document.write(STRING_FILENAME_EMPTY + ".htm");</script></div>
+			</div>
 		</div>
+		<div id="tinyace_textcode_container"><div id="tinyace_textcode"></div></div>
 
 		<script src="tinyACE.js"></script>
 		<script>
@@ -310,30 +305,6 @@
 					}
 				}
 
-			function menuFullScreen()
-				{
-				if (document.getElementById("tinyace_fullscreener").style.position!="absolute")
-					{
-					document.getElementById("tinyace_fullscreener").style.position="absolute";
-					document.getElementById("tinyace_fullscreener").style.left="0px";
-					document.getElementById("tinyace_fullscreener").style.top="0px";
-					document.getElementById("tinyace_fullscreener").style.right="0px";
-					document.getElementById("tinyace_fullscreener").style.bottom="0px";
-					document.getElementById("buttonFullScreen").classList.add("tinyace_button_fullscreen_enabled");
-					}
-					else
-					{
-					document.getElementById("tinyace_fullscreener").style.position="inherit";
-					document.getElementById("tinyace_fullscreener").style.left="0px";
-					document.getElementById("tinyace_fullscreener").style.top="0px";
-					document.getElementById("tinyace_fullscreener").style.right="0px";
-					document.getElementById("tinyace_fullscreener").style.bottom="0px";
-					document.getElementById("buttonFullScreen").classList.remove("tinyace_button_fullscreen_enabled");
-					}
-				resizeTinyACEEditor();
-				editor.focus();
-				}
-
 			function focusEditor()
 				{
 				try
@@ -348,15 +319,7 @@
 			function resizeTinyACEEditor()
 				{
 				var w = window, d = document, e = d.documentElement, g = d.getElementsByTagName("body")[0], x = w.innerWidth || e.clientWidth || g.clientWidth, y = w.innerHeight|| e.clientHeight|| g.clientHeight;
-				var editHeight;
-				if (document.getElementById("tinyace_fullscreener").style.position!="absolute")
-					{
-					editHeight = y - 41; // OR SOME VALUE THAT YOU WANT WHEN NOT FULLSCREEN
-					}
-					else
-					{
-					editHeight = y - 41; // OR SOME VALUE THAT YOU WANT WHEN FULLSCREEN
-					}
+				var editHeight = y - 41;
 
 				document.getElementById("tinyace_textcode_container").style.height = editHeight.toString() + "px";
 				editor.resize();
@@ -382,7 +345,6 @@
 				document.getElementById("buttonUndo").addEventListener("click",function(event){menuUndo()});
 				document.getElementById("buttonRedo").addEventListener("click",function(event){menuRedo()});
 				document.getElementById("buttonSearch").addEventListener("click",function(event){menuSearch()});
-				document.getElementById("buttonFullScreen").addEventListener("click",function(event){menuFullScreen()});
 				document.getElementById("tinyace_language").addEventListener("click",function(event){showDropDownMenu()});
 				document.getElementById("tinyace_filename").addEventListener("click",function(event){editor.focus()});
 				};
