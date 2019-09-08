@@ -330,7 +330,7 @@
 					document.getElementById("tinyace_fullscreener").style.bottom="0px";
 					document.getElementById("buttonFullScreen").classList.remove("tinyace_button_fullscreen_enabled");
 					}
-				resizeTinyCodeEditor();
+				resizeTinyACEEditor();
 				editor.focus();
 				}
 
@@ -345,7 +345,7 @@
 					}
 				}
 
-			function resizeTinyCodeEditor()
+			function resizeTinyACEEditor()
 				{
 				var w = window, d = document, e = d.documentElement, g = d.getElementsByTagName("body")[0], x = w.innerWidth || e.clientWidth || g.clientWidth, y = w.innerHeight|| e.clientHeight|| g.clientHeight;
 				var editHeight;
@@ -370,12 +370,12 @@
 
 			window.onresize = function()
 				{
-				resizeTinyCodeEditor();
+				resizeTinyACEEditor();
 				};
 
 			window.onload = function()
 				{
-				resizeTinyCodeEditor();
+				resizeTinyACEEditor();
 				document.getElementById("buttonNew").addEventListener("click",function(event){menuNewFile()});
 				document.getElementById("buttonOpen").addEventListener("click",function(event){editor.focus();document.getElementById("fileOpener").click();});
 				document.getElementById("buttonSave").addEventListener("click",function(event){menuSaveFile()});
