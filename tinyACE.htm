@@ -4,18 +4,16 @@
 		<meta charset="UTF-8">
 		<title>TinyACE Editor</title>
 		<link rel="stylesheet" href="tinyACE.css" type="text/css">
-		<style>
-			html,body{height:100%;margin:0;padding:0;background-color:white}
-			body{background:url("data:image/gif;base64,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") no-repeat center center}
-		</style>
 	</head>
 	<body>
 		<script>
 			var userLanguage = window.navigator.userLanguage || window.navigator.language;
+
 			var STRING_FILENAME = "";
 			var STRING_FILENAME_EMPTY = "";
 			var STRING_NEW_QUESTION = "";
 			var STRING_WELCOME = "";
+
 			if (userLanguage.substring(0,2)=="es")
 				{
 				STRING_FILENAME = "Sin nombre.htm";
@@ -79,24 +77,52 @@
 
 		<script src="tinyACE.js"></script>
 		<script>
-
+			// SETTING THE DEFAULT FILE NAME IN THE LABEL
 			document.getElementById("tinyace_filename").innerHTML = STRING_FILENAME;
 
+			// SETTING THE PATH OF THE ACE CORE
 			ace.config.set("basePath",".");
+
+			// CREATING THE ACE INSTANCE
 			var editor = ace.edit("tinyace_textcode");
+
+			// SETTING THE OPTIONS
 			editor.setOptions({fontSize:"14px",showPrintMargin:false,showInvisibles:true,tabSize:4,useSoftTabs:false,highlightActiveLine:false});
+
+			// REMOVING COMMAND
 			editor.commands.removeCommand("gotoline");
+
+			// SETTING THE DEFAULT PROGRAMMING LANGUAGE IN THE ACE CORE
 			editor.session.setMode("ace/mode/html");
+
+			// SETTING THE THEME
 			editor.setTheme("ace/theme/monokai");
+
+			// DISABLING WORKERS
 			editor.session.setUseWorker(false);
+
+			// SETTING WELCOME MESSAGE
 			editor.setValue(STRING_WELCOME);
+
+			// CLEARING SELECTION
 			editor.clearSelection();
+
+			// MOVING TO TOP OF THE DOCUMENT
 			editor.selection.moveTo(0,0);
+
+			// CLEARING THE UNDOMANAGER RECORDS
 			editor.session.getUndoManager().reset();
+
+			// GETTING FOCUS IN THE EDITOR
 			editor.focus();
+
+			// SETTING WHAT WILL HAPPEN WHEN THE EDITOR CONTENT CHANGES
 			editor.getSession().on("change", function()
 				{
+				// THE DOCUMENT WILL BE DIRTY
 				window.onbeforeunload = function(e){return "changed";};
+
+				// THE UNDO BUTTON WILL BE ENABLED
 				document.getElementById("buttonUndo").classList.add("tinyace_button_undo_enabled");
 				document.getElementById("buttonUndo").classList.remove("tinyace_button_undo_disabled");
 				});
@@ -105,29 +131,49 @@
 				{
 				var message = true;
 
+				// IF THE DOCUMENT IS DIRTY, A DISCARD CHANGES QUESTION WILL SHOW UP
 				if (!editor.session.getUndoManager().isClean())
 					{
 					message = confirm(STRING_NEW_QUESTION);
 					}
 
+				// IF THE USER DISCARDS CHANGES OR CREATES A NEW DOCUMENT
 				if (message == true)
 					{
+					// SETTING THE DEFAULT FILE NAME IN THE LABEL
 					STRING_FILENAME = STRING_FILENAME_EMPTY + ".htm";
 					document.getElementById("tinyace_filename").innerHTML = STRING_FILENAME;
+
+					// SETTING THE DEFAULT PROGRAMMING LANGUAGE
 					document.getElementById("tinyace_language").innerHTML = "HTML";
-					editor.setValue("");
 					editor.session.setMode("ace/mode/html");
+
+					// CLEARING THE EDITOR CONTENT
+					editor.setValue("");
+
+					// CLEARING SELECTION
 					editor.clearSelection();
+
+					// MOVING TO TOP OF THE DOCUMENT
 					editor.selection.moveTo(0,0);
+
+					// CLEARING THE UNDOMANAGER RECORDS
 					editor.session.getUndoManager().reset();
+
+					// SETTING THE DEFAULT STATE FOR EACH BUTTON
 					document.getElementById("buttonUndo").classList.add("tinyace_button_undo_disabled");
 					document.getElementById("buttonUndo").classList.remove("tinyace_button_undo_enabled");
 					document.getElementById("buttonRedo").classList.add("tinyace_button_redo_disabled");
 					document.getElementById("buttonRedo").classList.remove("tinyace_button_redo_enabled");
+
+					// HIDING THE SEARCH BOX (IF AVAILABLE)
 					try{editor.searchBox.hide();}catch(err){}
+
+					// SETTING THE DOCUMENT AS CLEAN
 					window.onbeforeunload = null;
 					}
 
+				// GETTING FOCUS IN THE EDITOR
 				try
 					{
 					editor.focus();
@@ -141,25 +187,35 @@
 				{
 				var message = true;
 
+				// IF THE DOCUMENT IS DIRTY, A DISCARD CHANGES QUESTION WILL SHOW UP
 				if (!editor.session.getUndoManager().isClean())
 					{
 					message = confirm(STRING_NEW_QUESTION);
 					}
 
+				// IF THE USER DISCARDS CHANGES OR OPENS A DOCUMENT
 				if (message == true)
 					{
+					// CREATING THE FILEREADER
 					var filereader = new FileReader();
 					filereader.file_name = file.name;
+
+					// SETTING THE FILE NAME
 					STRING_FILENAME = file.name;
+
+					// CHECKING THE FILE EXTENSION
 					var extension = filereader.file_name.split(".").pop().toLowerCase();
 					filereader.onload = function()
 						{
+						// GETTING THE FILE CONTENT
 						var content = this.result;
+
+						// SETTING THE FILE NAME VALUE IN THE LABEL
 						document.getElementById("tinyace_filename").innerHTML = STRING_FILENAME;
 
+						// SETTING THE PROGRAMMING LANGUAGE
 						var newLanguage;
 						var selectedLanguage;
-
 						if (extension=="htm" || extension=="html")		{newLanguage = "HTML";selectedLanguage="html";}
 						else if (extension=="js")						{newLanguage = "JavaScript";selectedLanguage="javascript";}
 						else if (extension=="css")						{newLanguage = "CSS";selectedLanguage="css";}
@@ -170,32 +226,63 @@
 						else if (extension=="ino")						{newLanguage = "Arduino";selectedLanguage="c_cpp";}
 						else											{newLanguage = "HTML";selectedLanguage="html";}
 
+						// SETTING THE PROGRAMMING LANGUAGE IN THE LABEL
 						document.getElementById("tinyace_language").innerHTML = newLanguage;
 
+						// SETTING THE PROGRAMMING LANGUAGE IN THE ACE CORE
 						editor.session.setMode("ace/mode/" + selectedLanguage);
 
+						// SETTING THE FILE CONTENT INTO THE EDITOR
 						editor.setValue(content);
+
+						// CLEARING SELECTION
 						editor.clearSelection();
+
+						// MOVING TO TOP OF THE DOCUMENT
 						editor.selection.moveTo(0,0);
+
+						// CLEARING THE UNDOMANAGER RECORDS
 						editor.session.getUndoManager().reset();
+
+						// SETTING THE DEFAULT STATE FOR EACH BUTTON
 						document.getElementById("buttonUndo").classList.add("tinyace_button_undo_disabled");
 						document.getElementById("buttonUndo").classList.remove("tinyace_button_undo_enabled");
 						document.getElementById("buttonRedo").classList.add("tinyace_button_redo_disabled");
 						document.getElementById("buttonRedo").classList.remove("tinyace_button_redo_enabled");
+
+						// HIDING THE SEARCH BOX (IF AVAILABLE)
 						try{editor.searchBox.hide();}catch(err){}
+
+						// SETTING THE DOCUMENT AS CLEAN
 						window.onbeforeunload = null;
+
+						// SCROLLING TO TOP OF THE DOCUMENT
 						editor.scrollToLine(0,true,true,function(){});
+
+						// GETTING FOCUS IN THE EDITOR
 						editor.focus();
+
+						// CLEARING THE SELECTED FILE VALUE
+						document.getElementById("fileOpener").value = null;
 						};
+
+					// READING THE FILE
 					filereader.readAsText(file,"ISO-8859-1");
 					}
+
+				// CLEARING THE SELECTED FILE VALUE
 				document.getElementById("fileOpener").value = null;
 				};
 
 			function menuSaveFile()
 				{
+				// GETTING THE EDITOR CONTENT AS A BLOB VALUE
 				var blobValue = new Blob([editor.getValue()],{type:"text/plain"});
+
+				// GETTING THE FILE NAME
 				var filename = STRING_FILENAME;
+
+				// DOWNLOADING THE FILE
 				var link = document.createElement("a");
 				link.style.display = "none";
 				document.body.appendChild(link);
@@ -205,13 +292,22 @@
 
 				try
 					{
+					// CLEARING THE UNDOMANAGER RECORDS
 					editor.session.getUndoManager().reset();
+
+					// SETTING THE DEFAULT STATE FOR EACH BUTTON
 					document.getElementById("buttonUndo").classList.add("tinyace_button_undo_disabled");
 					document.getElementById("buttonUndo").classList.remove("tinyace_button_undo_enabled");
 					document.getElementById("buttonRedo").classList.add("tinyace_button_redo_disabled");
 					document.getElementById("buttonRedo").classList.remove("tinyace_button_redo_enabled");
+
+					// HIDING THE SEARCH BOX (IF AVAILABLE)
 					try{editor.searchBox.hide();}catch(err){}
+
+					// SETTING THE DOCUMENT AS CLEAN
 					window.onbeforeunload = null;
+
+					// GETTING FOCUS IN THE EDITOR
 					editor.focus();
 					}
 					catch(err)
@@ -221,6 +317,7 @@
 
 			function menuSearch()
 				{
+				// SHOWING THE SEARCH BOX
 				try
 					{
 					editor.execCommand("find");
@@ -234,14 +331,23 @@
 				{
 				try
 					{
+					// UNDO THE EDITOR
 					editor.undo();
+
+					// GETTING FOCUS IN THE EDITOR
 					editor.focus();
+
+					// CLEARING SELECTION
 					editor.clearSelection();
+
+					// IF THERE ARE ANY UNDOS LEFT, THE UNDO BUTTON WILL BE DISABLED
 					if (!editor.session.getUndoManager().hasUndo())
 						{
 						document.getElementById("buttonUndo").classList.add("tinyace_button_undo_disabled");
 						document.getElementById("buttonUndo").classList.remove("tinyace_button_undo_enabled");
 						}
+
+					// IF THERE ARE ANY REDOS LEFT, THE REDO BUTTON WILL BE DISABLED
 					if (editor.session.getUndoManager().hasRedo())
 						{
 						document.getElementById("buttonRedo").classList.add("tinyace_button_redo_enabled");
@@ -257,14 +363,23 @@
 				{
 				try
 					{
+					// REDO THE EDITOR
 					editor.redo();
+
+					// GETTING FOCUS IN THE EDITOR
 					editor.focus();
+
+					// CLEARING SELECTION
 					editor.clearSelection();
+
+					// IF THERE ARE ANY UNDOS LEFT, THE UNDO BUTTON WILL BE DISABLED
 					if (!editor.session.getUndoManager().hasRedo())
 						{
 						document.getElementById("buttonRedo").classList.add("tinyace_button_redo_disabled");
 						document.getElementById("buttonRedo").classList.remove("tinyace_button_redo_enabled");
 						}
+
+					// IF THERE ARE ANY REDOS LEFT, THE REDO BUTTON WILL BE DISABLED
 					if (editor.session.getUndoManager().hasUndo())
 						{
 						document.getElementById("buttonUndo").classList.add("tinyace_button_undo_enabled");
@@ -280,8 +395,10 @@
 				{
 				try
 					{
+					// GETTING THE FILE NAME WITHOUT THE EXTENSION
 					var changeFileName = STRING_FILENAME.indexOf(STRING_FILENAME_EMPTY + ".");
 
+					// GETTING THE NEW SELECTED PROGRAMMING LANGUAGE
 					var selectedExtension = "";
 					var selectedLanguageLabel = "";
 					if (selectedLanguage=="html")				{selectedExtension=".htm";selectedLanguageLabel="HTML";}
@@ -294,21 +411,16 @@
 					else if (selectedLanguage=="arduino")		{selectedExtension=".ino";selectedLanguage="c_cpp";selectedLanguageLabel="Arduino";}
 					if (changeFileName>-1){STRING_FILENAME = STRING_FILENAME_EMPTY + selectedExtension;}
 
+					// SETTING THE NEW FILE NAME IN THE LABEL
 					document.getElementById("tinyace_filename").innerHTML = STRING_FILENAME;
+
+					// SETTING THE NEW PROGRAMMING LANGUAGE SELECTED IN THE LABEL
 					document.getElementById("tinyace_language").innerHTML = selectedLanguageLabel;
 
+					// SETTING THE NEW PROGRAMMING LANGUAGE SELECTED IN THE ACE CORE
 					editor.session.setMode("ace/mode/" + selectedLanguage);
-					editor.focus();
-					}
-					catch(err)
-					{
-					}
-				}
 
-			function focusEditor()
-				{
-				try
-					{
+					// GETTING FOCUS IN THE EDITOR
 					editor.focus();
 					}
 					catch(err)
@@ -318,27 +430,38 @@
 
 			function resizeTinyACEEditor()
 				{
+				// GETTING THE WINDOW SIZE
 				var w = window, d = document, e = d.documentElement, g = d.getElementsByTagName("body")[0], x = w.innerWidth || e.clientWidth || g.clientWidth, y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+
+				// CALCUTING THE NEW SIZE FOR THE EDITOR
 				var editHeight = y - 41;
 
+				// RESIZING THE EDITOR
 				document.getElementById("tinyace_textcode_container").style.height = editHeight.toString() + "px";
 				editor.resize();
+
+				// GETTING FOCUS IN THE EDITOR
 				editor.focus();
 				};
 
 			function showDropDownMenu()
 				{
+				// SHOWING THE DROPDOWN MENU WITH THE PROGRAMMING LANGUAGES LIST
 				document.getElementById("myDropdown").classList.toggle("tinyace_dropdown_show");
 				}
 
 			window.onresize = function()
 				{
+				// RESIZING THE EDITOR
 				resizeTinyACEEditor();
 				};
 
 			window.onload = function()
 				{
+				// RESIZING THE EDITOR
 				resizeTinyACEEditor();
+
+				// SETTING WHAT HAPPENS WHEN EACH ELEMENT IS CLICKED
 				document.getElementById("buttonNew").addEventListener("click",function(event){menuNewFile()});
 				document.getElementById("buttonOpen").addEventListener("click",function(event){editor.focus();document.getElementById("fileOpener").click();});
 				document.getElementById("buttonSave").addEventListener("click",function(event){menuSaveFile()});
@@ -351,6 +474,7 @@
 
 			window.onclick = function(event)
 				{
+				// CODE TO HIDE THE DROPDOWN LIST WHEN IS BEEN DISPLAYED AND THE CLICK HAPPENS SOMEWHERE ELSE
 				if (!event.target.matches(".tinyace_dropdown_button"))
 					{
 					var dropdowns = document.getElementsByClassName("tinyace_dropdown_content");
