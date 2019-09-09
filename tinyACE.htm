@@ -29,7 +29,11 @@
 				STRING_WELCOME = "<!DOCTYPE html>\n<html lang=\"en\">\n" + String.fromCharCode(9) + "<head>\n" + String.fromCharCode(9) + String.fromCharCode(9) + "<meta charset=\"UTF-8\">\n" + String.fromCharCode(9) + String.fromCharCode(9) + "<link rel=\"stylesheet\" href=\"styles.css\">\n" + String.fromCharCode(9) + String.fromCharCode(9) + "<title>Welcome to TinyACE Editor (based on Ace Code Editor) by Leonardo Russo / www.lrusso.com</title>\n" + String.fromCharCode(9) + "</head>\n" + String.fromCharCode(9) + "<body>\n" + String.fromCharCode(9) + String.fromCharCode(9) + "<form action=\"example.htm\" method=\"GET\">\n" + String.fromCharCode(9) + String.fromCharCode(9) + String.fromCharCode(9) + "<input type=\"text\" value=\"TEST TEXT\">\n" + String.fromCharCode(9) + String.fromCharCode(9) + String.fromCharCode(9) + "<input type=\"submit\" value=\"ENTER\">\n" + String.fromCharCode(9) + String.fromCharCode(9) + "</form>\n" + String.fromCharCode(9) + "</body>\n</html>";
 				}
 		</script>
-
+		<div class="tinyace_splash">
+			<div class="tinyace_splash_container">
+				<div class="tinyace_spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+			</div>
+		</div>
 		<div class="tinyace_menubar">
 			<div class="tinyace_holder">
 				<div class="tinyace_button_new_enabled" id="buttonNew"></div>
@@ -458,6 +462,9 @@
 
 			window.onload = function()
 				{
+				// HIDING THE LOADING SPLASH
+				document.getElementsByClassName("tinyace_splash")[0].style.display = "none";
+
 				// RESIZING THE EDITOR
 				resizeTinyACEEditor();
 
