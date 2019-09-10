@@ -276,7 +276,7 @@
 
 				// CLEARING THE SELECTED FILE VALUE
 				document.getElementById("fileOpener").value = null;
-				};
+				}
 
 			function menuSaveFile()
 				{
@@ -446,7 +446,7 @@
 
 				// GETTING FOCUS IN THE EDITOR
 				editor.focus();
-				};
+				}
 
 			function showDropDownMenu()
 				{
@@ -458,7 +458,7 @@
 				{
 				// RESIZING THE EDITOR
 				resizeTinyACEEditor();
-				};
+				}
 
 			window.onload = function()
 				{
@@ -477,7 +477,7 @@
 				document.getElementById("buttonSearch").addEventListener("click",function(event){menuSearch()});
 				document.getElementById("tinyace_language").addEventListener("click",function(event){showDropDownMenu()});
 				document.getElementById("tinyace_filename").addEventListener("click",function(event){editor.focus()});
-				};
+				}
 
 			window.onclick = function(event)
 				{
