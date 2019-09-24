@@ -54,6 +54,11 @@
 			</div>
 			<div class="tinyace_separator"></div>
 			<div class="tinyace_holder">
+				<div class="tinyace_button_insert_enabled" id="buttonInsert"></div>
+				<input type="file" class="tinyace_buttonHidden" id="fileInserter" onChange="menuInsert(document.getElementById('fileInserter').files[0]);">
+			</div>
+			<div class="tinyace_separator"></div>
+			<div class="tinyace_holder">
 				<div class="tinyace_dropdown">
 					<div class="tinyace_dropdown_button" id="tinyace_language">HTML</div>
 					<div id="myDropdown" class="tinyace_dropdown_content">
@@ -315,6 +320,38 @@
 					}
 				}
 
+			function menuInsert(file)
+				{
+				var filereader = new FileReader();
+				filereader.file_name = file.name;
+
+				// CHECKING THE FILE EXTENSION
+				var extension = filereader.file_name.split(".").pop().toLowerCase();
+				filereader.onload = function()
+					{
+					// GETTING THE FILE CONTENT
+					var content = this.result;
+
+					// SETTING THE FILE CONTENT INTO THE EDITOR
+					editor.session.insert(editor.getCursorPosition(), content);
+
+					// CLEARING SELECTION
+					editor.clearSelection();
+
+					// GETTING FOCUS IN THE EDITOR
+					editor.focus();
+
+					// CLEARING THE SELECTED FILE VALUE
+					document.getElementById("fileInserter").value = null;
+					};
+
+				// READING THE FILE
+				filereader.readAsDataURL(file);
+
+				// CLEARING THE SELECTED FILE VALUE
+				document.getElementById("fileInserter").value = null;
+				}
+
 			function menuSearch()
 				{
 				// SHOWING THE SEARCH BOX
@@ -475,6 +512,7 @@
 				document.getElementById("buttonUndo").addEventListener("click",function(event){menuUndo()});
 				document.getElementById("buttonRedo").addEventListener("click",function(event){menuRedo()});
 				document.getElementById("buttonSearch").addEventListener("click",function(event){menuSearch()});
+				document.getElementById("buttonInsert").addEventListener("click",function(event){editor.focus();document.getElementById("fileInserter").click();});
 				document.getElementById("tinyace_language").addEventListener("click",function(event){showDropDownMenu()});
 				document.getElementById("tinyace_filename").addEventListener("click",function(event){editor.focus()});
 				}
