@@ -82,163 +82,87 @@
 
 		<script src="tinyACE.js"></script>
 		<script>
-			// SETTING THE DEFAULT FILE NAME IN THE LABEL
-			document.getElementById("tinyace_filename").innerHTML = STRING_FILENAME;
-
-			// SETTING THE PATH OF THE ACE CORE
-			ace.config.set("basePath",".");
-
-			// CREATING THE ACE INSTANCE
-			var editor = ace.edit("tinyace_textcode");
-
-			// SETTING THE OPTIONS
-			editor.setOptions({fontSize:"14px",showPrintMargin:false,showInvisibles:true,tabSize:4,useSoftTabs:false,highlightActiveLine:false});
-
-			// REMOVING COMMAND
-			editor.commands.removeCommand("gotoline");
-
-			// SETTING THE DEFAULT PROGRAMMING LANGUAGE IN THE ACE CORE
-			editor.session.setMode("ace/mode/html");
-
-			// SETTING THE THEME
-			editor.setTheme("ace/theme/monokai");
-
-			// DISABLING WORKERS
-			editor.session.setUseWorker(false);
-
-			// SETTING WELCOME MESSAGE
-			editor.setValue(STRING_WELCOME);
-
-			// CLEARING SELECTION
-			editor.clearSelection();
-
-			// MOVING TO TOP OF THE DOCUMENT
-			editor.selection.moveTo(0,0);
-
-			// CLEARING THE UNDOMANAGER RECORDS
-			editor.session.getUndoManager().reset();
-
-			// GETTING FOCUS IN THE EDITOR
-			editor.focus();
-
-			// SETTING WHAT WILL HAPPEN WHEN THE EDITOR CONTENT CHANGES
-			editor.getSession().on("change", function()
+			try
 				{
-				// THE DOCUMENT WILL BE DIRTY
-				window.onbeforeunload = function(e){return "changed";};
+				// SETTING THE DEFAULT FILE NAME IN THE LABEL
+				document.getElementById("tinyace_filename").innerHTML = STRING_FILENAME;
 
-				// THE UNDO BUTTON WILL BE ENABLED
-				document.getElementById("buttonUndo").classList.add("tinyace_button_undo_enabled");
-				document.getElementById("buttonUndo").classList.remove("tinyace_button_undo_disabled");
-				});
+				// SETTING THE PATH OF THE ACE CORE
+				ace.config.set("basePath",".");
+
+				// CREATING THE ACE INSTANCE
+				var editor = ace.edit("tinyace_textcode");
+
+				// SETTING THE OPTIONS
+				editor.setOptions({fontSize:"14px",showPrintMargin:false,showInvisibles:true,tabSize:4,useSoftTabs:false,highlightActiveLine:false});
+
+				// REMOVING COMMAND
+				editor.commands.removeCommand("gotoline");
+
+				// SETTING THE DEFAULT PROGRAMMING LANGUAGE IN THE ACE CORE
+				editor.session.setMode("ace/mode/html");
+
+				// SETTING THE THEME
+				editor.setTheme("ace/theme/monokai");
+
+				// DISABLING WORKERS
+				editor.session.setUseWorker(false);
+
+				// SETTING WELCOME MESSAGE
+				editor.setValue(STRING_WELCOME);
+
+				// CLEARING SELECTION
+				editor.clearSelection();
+
+				// MOVING TO TOP OF THE DOCUMENT
+				editor.selection.moveTo(0,0);
+
+				// CLEARING THE UNDOMANAGER RECORDS
+				editor.session.getUndoManager().reset();
+
+				// GETTING FOCUS IN THE EDITOR
+				editor.focus();
+
+				// SETTING WHAT WILL HAPPEN WHEN THE EDITOR CONTENT CHANGES
+				editor.getSession().on("change", function()
+					{
+					// THE DOCUMENT WILL BE DIRTY
+					window.onbeforeunload = function(e){return "changed";};
+
+					// THE UNDO BUTTON WILL BE ENABLED
+					document.getElementById("buttonUndo").classList.add("tinyace_button_undo_enabled");
+					document.getElementById("buttonUndo").classList.remove("tinyace_button_undo_disabled");
+					});
+				}
+				catch(err)
+				{
+				}
 
 			function menuNewFile()
 				{
-				var message = true;
-
-				// IF THE DOCUMENT IS DIRTY, A DISCARD CHANGES QUESTION WILL SHOW UP
-				if (!editor.session.getUndoManager().isClean())
-					{
-					message = confirm(STRING_NEW_QUESTION);
-					}
-
-				// IF THE USER DISCARDS CHANGES OR CREATES A NEW DOCUMENT
-				if (message == true)
-					{
-					// SETTING THE DEFAULT FILE NAME IN THE LABEL
-					STRING_FILENAME = STRING_FILENAME_EMPTY + ".htm";
-					document.getElementById("tinyace_filename").innerHTML = STRING_FILENAME;
-
-					// SETTING THE DEFAULT PROGRAMMING LANGUAGE
-					document.getElementById("tinyace_language").innerHTML = "HTML";
-					editor.session.setMode("ace/mode/html");
-
-					// CLEARING THE EDITOR CONTENT
-					editor.setValue("");
-
-					// CLEARING SELECTION
-					editor.clearSelection();
-
-					// MOVING TO TOP OF THE DOCUMENT
-					editor.selection.moveTo(0,0);
-
-					// CLEARING THE UNDOMANAGER RECORDS
-					editor.session.getUndoManager().reset();
-
-					// SETTING THE DEFAULT STATE FOR EACH BUTTON
-					document.getElementById("buttonUndo").classList.add("tinyace_button_undo_disabled");
-					document.getElementById("buttonUndo").classList.remove("tinyace_button_undo_enabled");
-					document.getElementById("buttonRedo").classList.add("tinyace_button_redo_disabled");
-					document.getElementById("buttonRedo").classList.remove("tinyace_button_redo_enabled");
-
-					// HIDING THE SEARCH BOX (IF AVAILABLE)
-					try{editor.searchBox.hide();}catch(err){}
-
-					// SETTING THE DOCUMENT AS CLEAN
-					window.onbeforeunload = null;
-					}
-
-				// GETTING FOCUS IN THE EDITOR
 				try
 					{
-					editor.focus();
-					}
-					catch(err)
-					{
-					}
-				}
+					var message = true;
 
-			function menuOpenFile(file)
-				{
-				var message = true;
-
-				// IF THE DOCUMENT IS DIRTY, A DISCARD CHANGES QUESTION WILL SHOW UP
-				if (!editor.session.getUndoManager().isClean())
-					{
-					message = confirm(STRING_NEW_QUESTION);
-					}
-
-				// IF THE USER DISCARDS CHANGES OR OPENS A DOCUMENT
-				if (message == true)
-					{
-					// CREATING THE FILEREADER
-					var filereader = new FileReader();
-					filereader.file_name = file.name;
-
-					// SETTING THE FILE NAME
-					STRING_FILENAME = file.name;
-
-					// CHECKING THE FILE EXTENSION
-					var extension = filereader.file_name.split(".").pop().toLowerCase();
-					filereader.onload = function()
+					// IF THE DOCUMENT IS DIRTY, A DISCARD CHANGES QUESTION WILL SHOW UP
+					if (!editor.session.getUndoManager().isClean())
 						{
-						// GETTING THE FILE CONTENT
-						var content = this.result;
+						message = confirm(STRING_NEW_QUESTION);
+						}
 
-						// SETTING THE FILE NAME VALUE IN THE LABEL
+					// IF THE USER DISCARDS CHANGES OR CREATES A NEW DOCUMENT
+					if (message == true)
+						{
+						// SETTING THE DEFAULT FILE NAME IN THE LABEL
+						STRING_FILENAME = STRING_FILENAME_EMPTY + ".htm";
 						document.getElementById("tinyace_filename").innerHTML = STRING_FILENAME;
 
-						// SETTING THE PROGRAMMING LANGUAGE
-						var newLanguage;
-						var selectedLanguage;
-						if (extension=="htm" || extension=="html")		{newLanguage = "HTML";selectedLanguage="html";}
-						else if (extension=="js")						{newLanguage = "JavaScript";selectedLanguage="javascript";}
-						else if (extension=="css")						{newLanguage = "CSS";selectedLanguage="css";}
-						else if (extension=="java")						{newLanguage = "Java";selectedLanguage="java";}
-						else if (extension=="php")						{newLanguage = "PHP";selectedLanguage="php";}
-						else if (extension=="xml")						{newLanguage = "XML";selectedLanguage="xml";}
-						else if (extension=="c")						{newLanguage = "C";selectedLanguage="c_cpp";}
-						else if (extension=="ino")						{newLanguage = "Arduino";selectedLanguage="c_cpp";}
-						else											{newLanguage = "HTML";selectedLanguage="html";}
+						// SETTING THE DEFAULT PROGRAMMING LANGUAGE
+						document.getElementById("tinyace_language").innerHTML = "HTML";
+						editor.session.setMode("ace/mode/html");
 
-						// SETTING THE PROGRAMMING LANGUAGE IN THE LABEL
-						document.getElementById("tinyace_language").innerHTML = newLanguage;
-
-						// SETTING THE PROGRAMMING LANGUAGE IN THE ACE CORE
-						editor.session.setMode("ace/mode/" + selectedLanguage);
-
-						// SETTING THE FILE CONTENT INTO THE EDITOR
-						editor.setValue(content);
+						// CLEARING THE EDITOR CONTENT
+						editor.setValue("");
 
 						// CLEARING SELECTION
 						editor.clearSelection();
@@ -260,60 +184,154 @@
 
 						// SETTING THE DOCUMENT AS CLEAN
 						window.onbeforeunload = null;
+						}
 
-						// SCROLLING TO TOP OF THE DOCUMENT
-						editor.scrollToLine(0,true,true,function(){});
-
-						// GETTING FOCUS IN THE EDITOR
-						editor.focus();
-
-						// CLEARING THE SELECTED FILE VALUE
-						document.getElementById("fileOpener").value = null;
-						};
-
-					// READING THE FILE
-					filereader.readAsText(file,"ISO-8859-1");
+					// GETTING FOCUS IN THE EDITOR
+					try{editor.focus()}catch(err){}
 					}
+					catch(err)
+					{
+					}
+				}
 
-				// CLEARING THE SELECTED FILE VALUE
-				document.getElementById("fileOpener").value = null;
+			function menuOpenFile(file)
+				{
+				try
+					{
+					var message = true;
+
+					// IF THE DOCUMENT IS DIRTY, A DISCARD CHANGES QUESTION WILL SHOW UP
+					if (!editor.session.getUndoManager().isClean())
+						{
+						message = confirm(STRING_NEW_QUESTION);
+						}
+
+					// IF THE USER DISCARDS CHANGES OR OPENS A DOCUMENT
+					if (message == true)
+						{
+						// CREATING THE FILEREADER
+						var filereader = new FileReader();
+						filereader.file_name = file.name;
+
+						// SETTING THE FILE NAME
+						STRING_FILENAME = file.name;
+
+						// CHECKING THE FILE EXTENSION
+						var extension = filereader.file_name.split(".").pop().toLowerCase();
+						filereader.onload = function()
+							{
+							// GETTING THE FILE CONTENT
+							var content = this.result;
+
+							// SETTING THE FILE NAME VALUE IN THE LABEL
+							document.getElementById("tinyace_filename").innerHTML = STRING_FILENAME;
+
+							// SETTING THE PROGRAMMING LANGUAGE
+							var newLanguage;
+							var selectedLanguage;
+							if (extension=="htm" || extension=="html")		{newLanguage = "HTML";selectedLanguage="html";}
+							else if (extension=="js")						{newLanguage = "JavaScript";selectedLanguage="javascript";}
+							else if (extension=="css")						{newLanguage = "CSS";selectedLanguage="css";}
+							else if (extension=="java")						{newLanguage = "Java";selectedLanguage="java";}
+							else if (extension=="php")						{newLanguage = "PHP";selectedLanguage="php";}
+							else if (extension=="xml")						{newLanguage = "XML";selectedLanguage="xml";}
+							else if (extension=="c")						{newLanguage = "C";selectedLanguage="c_cpp";}
+							else if (extension=="ino")						{newLanguage = "Arduino";selectedLanguage="c_cpp";}
+							else											{newLanguage = "HTML";selectedLanguage="html";}
+
+							// SETTING THE PROGRAMMING LANGUAGE IN THE LABEL
+							document.getElementById("tinyace_language").innerHTML = newLanguage;
+
+							// SETTING THE PROGRAMMING LANGUAGE IN THE ACE CORE
+							editor.session.setMode("ace/mode/" + selectedLanguage);
+
+							// SETTING THE FILE CONTENT INTO THE EDITOR
+							editor.setValue(content);
+
+							// CLEARING SELECTION
+							editor.clearSelection();
+
+							// MOVING TO TOP OF THE DOCUMENT
+							editor.selection.moveTo(0,0);
+
+							// CLEARING THE UNDOMANAGER RECORDS
+							editor.session.getUndoManager().reset();
+
+							// SETTING THE DEFAULT STATE FOR EACH BUTTON
+							document.getElementById("buttonUndo").classList.add("tinyace_button_undo_disabled");
+							document.getElementById("buttonUndo").classList.remove("tinyace_button_undo_enabled");
+							document.getElementById("buttonRedo").classList.add("tinyace_button_redo_disabled");
+							document.getElementById("buttonRedo").classList.remove("tinyace_button_redo_enabled");
+
+							// HIDING THE SEARCH BOX (IF AVAILABLE)
+							try{editor.searchBox.hide();}catch(err){}
+
+							// SETTING THE DOCUMENT AS CLEAN
+							window.onbeforeunload = null;
+
+							// SCROLLING TO TOP OF THE DOCUMENT
+							editor.scrollToLine(0,true,true,function(){});
+
+							// GETTING FOCUS IN THE EDITOR
+							editor.focus();
+
+							// CLEARING THE SELECTED FILE VALUE
+							document.getElementById("fileOpener").value = null;
+							};
+
+						// READING THE FILE
+						filereader.readAsText(file,"ISO-8859-1");
+						}
+
+					// CLEARING THE SELECTED FILE VALUE
+					document.getElementById("fileOpener").value = null;
+					}
+					catch(err)
+					{
+					}
 				}
 
 			function menuSaveFile()
 				{
-				// GETTING THE EDITOR CONTENT AS A BLOB VALUE
-				var blobValue = new Blob([editor.getValue()],{type:"text/plain"});
-
-				// GETTING THE FILE NAME
-				var filename = STRING_FILENAME;
-
-				// DOWNLOADING THE FILE
-				var link = document.createElement("a");
-				link.style.display = "none";
-				document.body.appendChild(link);
-				link.href = URL.createObjectURL(blobValue);
-				link.download = filename || "data.json";
-				link.click();
-
 				try
 					{
-					// CLEARING THE UNDOMANAGER RECORDS
-					editor.session.getUndoManager().reset();
+					// GETTING THE EDITOR CONTENT AS A BLOB VALUE
+					var blobValue = new Blob([editor.getValue()],{type:"text/plain"});
 
-					// SETTING THE DEFAULT STATE FOR EACH BUTTON
-					document.getElementById("buttonUndo").classList.add("tinyace_button_undo_disabled");
-					document.getElementById("buttonUndo").classList.remove("tinyace_button_undo_enabled");
-					document.getElementById("buttonRedo").classList.add("tinyace_button_redo_disabled");
-					document.getElementById("buttonRedo").classList.remove("tinyace_button_redo_enabled");
+					// GETTING THE FILE NAME
+					var filename = STRING_FILENAME;
 
-					// HIDING THE SEARCH BOX (IF AVAILABLE)
-					try{editor.searchBox.hide();}catch(err){}
+					// DOWNLOADING THE FILE
+					var link = document.createElement("a");
+					link.style.display = "none";
+					document.body.appendChild(link);
+					link.href = URL.createObjectURL(blobValue);
+					link.download = filename || "data.json";
+					link.click();
 
-					// SETTING THE DOCUMENT AS CLEAN
-					window.onbeforeunload = null;
+					try
+						{
+						// CLEARING THE UNDOMANAGER RECORDS
+						editor.session.getUndoManager().reset();
 
-					// GETTING FOCUS IN THE EDITOR
-					editor.focus();
+						// SETTING THE DEFAULT STATE FOR EACH BUTTON
+						document.getElementById("buttonUndo").classList.add("tinyace_button_undo_disabled");
+						document.getElementById("buttonUndo").classList.remove("tinyace_button_undo_enabled");
+						document.getElementById("buttonRedo").classList.add("tinyace_button_redo_disabled");
+						document.getElementById("buttonRedo").classList.remove("tinyace_button_redo_enabled");
+
+						// HIDING THE SEARCH BOX (IF AVAILABLE)
+						try{editor.searchBox.hide();}catch(err){}
+
+						// SETTING THE DOCUMENT AS CLEAN
+						window.onbeforeunload = null;
+
+						// GETTING FOCUS IN THE EDITOR
+						editor.focus();
+						}
+						catch(err)
+						{
+						}
 					}
 					catch(err)
 					{
@@ -322,34 +340,40 @@
 
 			function menuInsert(file)
 				{
-				var filereader = new FileReader();
-				filereader.file_name = file.name;
-
-				// CHECKING THE FILE EXTENSION
-				var extension = filereader.file_name.split(".").pop().toLowerCase();
-				filereader.onload = function()
+				try
 					{
-					// GETTING THE FILE CONTENT
-					var content = this.result;
+					var filereader = new FileReader();
+					filereader.file_name = file.name;
 
-					// SETTING THE FILE CONTENT INTO THE EDITOR
-					editor.session.insert(editor.getCursorPosition(), content);
+					// CHECKING THE FILE EXTENSION
+					var extension = filereader.file_name.split(".").pop().toLowerCase();
+					filereader.onload = function()
+						{
+						// GETTING THE FILE CONTENT
+						var content = this.result;
 
-					// CLEARING SELECTION
-					editor.clearSelection();
+						// SETTING THE FILE CONTENT INTO THE EDITOR
+						editor.session.insert(editor.getCursorPosition(), content);
 
-					// GETTING FOCUS IN THE EDITOR
-					editor.focus();
+						// CLEARING SELECTION
+						editor.clearSelection();
+
+						// GETTING FOCUS IN THE EDITOR
+						editor.focus();
+
+						// CLEARING THE SELECTED FILE VALUE
+						document.getElementById("fileInserter").value = null;
+						};
+
+					// READING THE FILE
+					filereader.readAsDataURL(file);
 
 					// CLEARING THE SELECTED FILE VALUE
 					document.getElementById("fileInserter").value = null;
-					};
-
-				// READING THE FILE
-				filereader.readAsDataURL(file);
-
-				// CLEARING THE SELECTED FILE VALUE
-				document.getElementById("fileInserter").value = null;
+					}
+					catch(err)
+					{
+					}
 				}
 
 			function menuSearch()
@@ -467,24 +491,36 @@
 
 			function resizeTinyACEEditor()
 				{
-				// GETTING THE WINDOW SIZE
-				var w = window, d = document, e = d.documentElement, g = d.getElementsByTagName("body")[0], x = w.innerWidth || e.clientWidth || g.clientWidth, y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+				try
+					{
+					// GETTING THE WINDOW SIZE
+					var w = window, d = document, e = d.documentElement, g = d.getElementsByTagName("body")[0], x = w.innerWidth || e.clientWidth || g.clientWidth, y = w.innerHeight|| e.clientHeight|| g.clientHeight;
 
-				// CALCUTING THE NEW SIZE FOR THE EDITOR
-				var editHeight = y - 41;
+					// CALCUTING THE NEW SIZE FOR THE EDITOR
+					var editHeight = y - 41;
 
-				// RESIZING THE EDITOR
-				document.getElementById("tinyace_textcode_container").style.height = editHeight.toString() + "px";
-				editor.resize();
+					// RESIZING THE EDITOR
+					document.getElementById("tinyace_textcode_container").style.height = editHeight.toString() + "px";
+					editor.resize();
 
-				// GETTING FOCUS IN THE EDITOR
-				editor.focus();
+					// GETTING FOCUS IN THE EDITOR
+					editor.focus();
+					}
+					catch(err)
+					{
+					}
 				}
 
 			function showDropDownMenu()
 				{
-				// SHOWING THE DROPDOWN MENU WITH THE PROGRAMMING LANGUAGES LIST
-				document.getElementById("myDropdown").classList.toggle("tinyace_dropdown_show");
+				try
+					{
+					// SHOWING THE DROPDOWN MENU WITH THE PROGRAMMING LANGUAGES LIST
+					document.getElementById("myDropdown").classList.toggle("tinyace_dropdown_show");
+					}
+					catch(err)
+					{
+					}
 				}
 
 			window.onresize = function()
@@ -519,20 +555,26 @@
 
 			window.onclick = function(event)
 				{
-				// CODE TO HIDE THE DROPDOWN LIST WHEN IS BEEN DISPLAYED AND THE CLICK HAPPENS SOMEWHERE ELSE
-				if (!event.target.matches(".tinyace_dropdown_button"))
+				try
 					{
-					var dropdowns = document.getElementsByClassName("tinyace_dropdown_content");
-					for (var i = 0; i < dropdowns.length; i++)
+					// CODE TO HIDE THE DROPDOWN LIST WHEN IS BEEN DISPLAYED AND THE CLICK HAPPENS SOMEWHERE ELSE
+					if (!event.target.matches(".tinyace_dropdown_button"))
 						{
-						var openDropdown = dropdowns[i];
-						if (openDropdown.classList.contains("tinyace_dropdown_show"))
+						var dropdowns = document.getElementsByClassName("tinyace_dropdown_content");
+						for (var i = 0; i < dropdowns.length; i++)
 							{
-							openDropdown.classList.remove("tinyace_dropdown_show");
-							editor.focus();
-							setTimeout(function(){editor.focus();},200);
+							var openDropdown = dropdowns[i];
+							if (openDropdown.classList.contains("tinyace_dropdown_show"))
+								{
+								openDropdown.classList.remove("tinyace_dropdown_show");
+								editor.focus();
+								setTimeout(function(){editor.focus();},200);
+								}
 							}
 						}
+					}
+					catch(err)
+					{
 					}
 				}
 		</script>
