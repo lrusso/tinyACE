@@ -27,3 +27,499 @@ define("ace/mode/doc_comment_highlight_rules",["require","exports","module","ace
 
 // ext-searchbox.js MODIFIED
 define("ace/ext/searchbox",["require","exports","module","ace/lib/dom","ace/lib/lang","ace/lib/event","ace/keyboard/hash_handler","ace/lib/keys"],function(e,t,i){"use strict";var n=e("../lib/dom"),s=e("../lib/lang"),a=e("../lib/event"),c='.ace_search {background-color: #F2F2F2;color: #666;border: 1px solid #cbcbcb;border-top: 0 none;overflow: hidden;margin: 0;padding: 4px 6px 0 4px;position: absolute;top: 0;z-index: 99;white-space: normal;cursor: default;}.ace_search.left {border-left: 0 none;border-radius: 0px 0px 5px 0px;left: 0;}.ace_search.right {border-radius: 0px 0px 0px 5px;border-right: 0 none;right: 0;}.ace_search_form, .ace_replace_form {margin: 0 20px 4px 0;overflow: hidden;line-height: 1.9;}.ace_replace_form {margin-right: 0;}.ace_search_form.ace_nomatch {outline: 1px solid red;}.ace_search_field {border-radius: 3px 0 0 3px;background-color: white;color: black;border: 1px solid #cbcbcb;border-right: 0 none;outline: 0;padding: 0;font-size: inherit;margin: 0;line-height: inherit;padding: 0 6px;min-width: 17em;vertical-align: top;min-height: 1.8em;box-sizing: content-box;}.ace_searchbtn {border: 1px solid #cbcbcb;line-height: inherit;display: inline-block;padding: 0 6px;background: #fff;border-right: 0 none;border-left: 1px solid #dcdcdc;cursor: pointer;margin: 0;position: relative;color: #666;}.ace_searchbtn:last-child {border-radius: 0 3px 3px 0;border-right: 1px solid #cbcbcb;}.ace_searchbtn:disabled {background: none;cursor: default;}.ace_searchbtn:hover {background-color: #eef1f6;}.ace_searchbtn.prev, .ace_searchbtn.next {padding: 0px 0.7em}.ace_searchbtn.prev:after, .ace_searchbtn.next:after {content: "";border: solid 2px #888;width: 0.5em;height: 0.5em;border-width:  2px 0 0 2px;display:inline-block;transform: rotate(-45deg);}.ace_searchbtn.next:after {border-width: 0 2px 2px 0 ;}.ace_searchbtn_close {background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAcCAYAAABRVo5BAAAAZ0lEQVR42u2SUQrAMAhDvazn8OjZBilCkYVVxiis8H4CT0VrAJb4WHT3C5xU2a2IQZXJjiQIRMdkEoJ5Q2yMqpfDIo+XY4k6h+YXOyKqTIj5REaxloNAd0xiKmAtsTHqW8sR2W5f7gCu5nWFUpVjZwAAAABJRU5ErkJggg==) no-repeat 50% 0;border-radius: 50%;border: 0 none;color: #656565;cursor: pointer;font: 16px/16px Arial;padding: 0;height: 14px;width: 14px;top: 9px;right: 7px;position: absolute;}.ace_searchbtn_close:hover {background-color: #656565;background-position: 50% 100%;color: white;}.ace_button {margin-left: 2px;cursor: pointer;-webkit-user-select: none;-moz-user-select: none;-o-user-select: none;-ms-user-select: none;user-select: none;overflow: hidden;opacity: 0.7;border: 1px solid rgba(100,100,100,0.23);padding: 1px;box-sizing:    border-box!important;color: black;}.ace_button:hover {background-color: #eee;opacity:1;}.ace_button:active {background-color: #ddd;}.ace_button.checked {border-color: #3399ff;opacity:1;}.ace_search_options{margin-bottom: 3px;text-align: right;-webkit-user-select: none;-moz-user-select: none;-o-user-select: none;-ms-user-select: none;user-select: none;clear: both;}.ace_search_counter {float: left;font-family: arial;padding: 0 8px;}',o=e("../keyboard/hash_handler").HashHandler,r=e("../lib/keys");n.importCssString(c,"ace_searchbox");var h=window.navigator.userLanguage||window.navigator.language,l="",d="",p="",u="",g="",f="",b="",x="",m="";"es"==h.substring(0,2)?(l="Buscar",d="Reemplazar",p="Reemplazar con",u="Todo",g="Cambiar modo de búsqueda",f="Búsqueda sensible",b="Búsqueda de palabra entera",x="Búsqueda en selección",m=" de "):(l="Search for",d="Replace",p="Replace with",u="All",g="Toogle Replace Mode",f="CaseSensitive Search",b="Whole Word Search",x="Search In Selection",m=" of ");var v=function(e,t,i){var s=n.createElement("div");n.buildDom(["div",{class:"ace_search right"},["span",{action:"hide",class:"ace_searchbtn_close"}],["div",{class:"ace_search_form"},["input",{class:"ace_search_field",placeholder:l,spellcheck:"false"}],["span",{action:"findPrev",class:"ace_searchbtn prev"},"​"],["span",{action:"findNext",class:"ace_searchbtn next"},"​"],["span",{action:"findAll",class:"ace_searchbtn",title:"Alt-Enter"},u]],["div",{class:"ace_replace_form"},["input",{class:"ace_search_field",placeholder:p,spellcheck:"false"}],["span",{action:"replaceAndFindNext",class:"ace_searchbtn"},d],["span",{action:"replaceAll",class:"ace_searchbtn"},u]],["div",{class:"ace_search_options"},["span",{action:"toggleReplace",class:"ace_button",title:g,style:"float:left;margin-top:-2px;padding:0 5px;"},"+"],["span",{class:"ace_search_counter"}],["span",{action:"toggleCaseSensitive",class:"ace_button",title:f},"Aa"],["span",{action:"toggleWholeWords",class:"ace_button",title:b},"\\b"],["span",{action:"searchInSelection",class:"ace_button",title:x},"S"]]],s),this.element=s.firstChild,this.setSession=this.setSession.bind(this),this.$init(),this.setEditor(e),n.importCssString(c,"ace_searchbox",e.container)};(function(){this.setEditor=function(e){e.searchBox=this,e.renderer.scroller.appendChild(this.element),this.editor=e},this.setSession=function(e){this.searchRange=null,this.$syncOptions(!0)},this.$initElements=function(e){this.searchBox=e.querySelector(".ace_search_form"),this.replaceBox=e.querySelector(".ace_replace_form"),this.searchOption=e.querySelector("[action=searchInSelection]"),this.replaceOption=e.querySelector("[action=toggleReplace]"),this.caseSensitiveOption=e.querySelector("[action=toggleCaseSensitive]"),this.wholeWordOption=e.querySelector("[action=toggleWholeWords]"),this.searchInput=this.searchBox.querySelector(".ace_search_field"),this.replaceInput=this.replaceBox.querySelector(".ace_search_field"),this.searchCounter=e.querySelector(".ace_search_counter")},this.$init=function(){var e=this.element;this.$initElements(e);var t=this;a.addListener(e,"mousedown",function(e){setTimeout(function(){t.activeInput.focus()},0),a.stopPropagation(e)}),a.addListener(e,"click",function(e){var i=(e.target||e.srcElement).getAttribute("action");i&&t[i]?t[i]():t.$searchBarKb.commands[i]&&t.$searchBarKb.commands[i].exec(t),a.stopPropagation(e)}),a.addCommandKeyListener(e,function(e,i,n){var s=r.keyCodeToString(n),c=t.$searchBarKb.findKeyCommand(i,s);c&&c.exec&&(c.exec(t),a.stopEvent(e))}),this.$onChange=s.delayedCall(function(){t.find(!1,!1)}),a.addListener(this.searchInput,"input",function(){t.$onChange.schedule(20)}),a.addListener(this.searchInput,"focus",function(){t.activeInput=t.searchInput,t.searchInput.value&&t.highlight()}),a.addListener(this.replaceInput,"focus",function(){t.activeInput=t.replaceInput,t.searchInput.value&&t.highlight()})},this.$closeSearchBarKb=new o([{bindKey:"Esc",name:"closeSearchBar",exec:function(e){e.searchBox.hide()}}]),this.$searchBarKb=new o,this.$searchBarKb.bindKeys({"Ctrl-f|Command-f":function(e){var t=e.isReplace=!e.isReplace;e.replaceBox.style.display=t?"":"none",e.replaceOption.checked=!1,e.$syncOptions(),e.searchInput.focus()},"Ctrl-H|Command-Option-F":function(e){e.editor.getReadOnly()||(e.replaceOption.checked=!0,e.$syncOptions(),e.replaceInput.focus())},"Ctrl-G|Command-G":function(e){e.findNext()},"Ctrl-Shift-G|Command-Shift-G":function(e){e.findPrev()},esc:function(e){setTimeout(function(){e.hide()})},Return:function(e){e.activeInput==e.replaceInput&&e.replace(),e.findNext()},"Shift-Return":function(e){e.activeInput==e.replaceInput&&e.replace(),e.findPrev()},"Alt-Return":function(e){e.activeInput==e.replaceInput&&e.replaceAll(),e.findAll()},Tab:function(e){(e.activeInput==e.replaceInput?e.searchInput:e.replaceInput).focus()}}),this.$searchBarKb.addCommands([{name:"toggleRegexpMode",bindKey:{win:"Alt-R|Alt-/",mac:"Ctrl-Alt-R|Ctrl-Alt-/"},exec:function(e){e.regExpOption.checked=!e.regExpOption.checked,e.$syncOptions()}},{name:"toggleCaseSensitive",bindKey:{win:"Alt-C|Alt-I",mac:"Ctrl-Alt-R|Ctrl-Alt-I"},exec:function(e){e.caseSensitiveOption.checked=!e.caseSensitiveOption.checked,e.$syncOptions()}},{name:"toggleWholeWords",bindKey:{win:"Alt-B|Alt-W",mac:"Ctrl-Alt-B|Ctrl-Alt-W"},exec:function(e){e.wholeWordOption.checked=!e.wholeWordOption.checked,e.$syncOptions()}},{name:"toggleReplace",exec:function(e){e.replaceOption.checked=!e.replaceOption.checked,e.$syncOptions()}},{name:"searchInSelection",exec:function(e){e.searchOption.checked=!e.searchRange,e.setSearchRange(e.searchOption.checked&&e.editor.getSelectionRange()),e.$syncOptions()}}]),this.setSearchRange=function(e){this.searchRange=e,e?this.searchRangeMarker=this.editor.session.addMarker(e,"ace_active-line"):this.searchRangeMarker&&(this.editor.session.removeMarker(this.searchRangeMarker),this.searchRangeMarker=null)},this.$syncOptions=function(e){n.setCssClass(this.replaceOption,"checked",this.searchRange),n.setCssClass(this.searchOption,"checked",this.searchOption.checked),this.replaceOption.textContent=this.replaceOption.checked?"-":"+",n.setCssClass(this.wholeWordOption,"checked",this.wholeWordOption.checked),n.setCssClass(this.caseSensitiveOption,"checked",this.caseSensitiveOption.checked);var t=this.editor.getReadOnly();this.replaceOption.style.display=t?"none":"",this.replaceBox.style.display=this.replaceOption.checked&&!t?"":"none",this.find(!1,!1,e)},this.highlight=function(e){this.editor.session.highlight(e||this.editor.$search.$options.re),this.editor.renderer.updateBackMarkers()},this.find=function(e,t,i){var s=!this.editor.find(this.searchInput.value,{skipCurrent:e,backwards:t,wrap:!0,caseSensitive:this.caseSensitiveOption.checked,wholeWord:this.wholeWordOption.checked,preventScroll:i,range:this.searchRange})&&this.searchInput.value;n.setCssClass(this.searchBox,"ace_nomatch",s),this.editor._emit("findSearchBox",{match:!s}),this.highlight(),this.updateCounter()},this.updateCounter=function(){var e=this.editor,t=e.$search.$options.re,i=0,n=0;if(t){var s=this.searchRange?e.session.getTextRange(this.searchRange):e.getValue(),a=e.session.doc.positionToIndex(e.selection.anchor);this.searchRange&&(a-=e.session.doc.positionToIndex(this.searchRange.start));for(var c,o=t.lastIndex=0;(c=t.exec(s))&&(i++,(o=c.index)<=a&&n++,!(i>999))&&(c[0]||(t.lastIndex=o+=1,!(o>=s.length))););}this.searchCounter.textContent=n+m+(i>999?"999+":i)},this.findNext=function(){this.find(!0,!1)},this.findPrev=function(){this.find(!0,!0)},this.findAll=function(){var e=!this.editor.findAll(this.searchInput.value,{caseSensitive:this.caseSensitiveOption.checked,wholeWord:this.wholeWordOption.checked})&&this.searchInput.value;n.setCssClass(this.searchBox,"ace_nomatch",e),this.editor._emit("findSearchBox",{match:!e}),this.highlight(),this.hide()},this.replace=function(){this.editor.getReadOnly()||this.editor.replace(this.replaceInput.value)},this.replaceAndFindNext=function(){this.editor.getReadOnly()||(this.editor.replace(this.replaceInput.value),this.findNext())},this.replaceAll=function(){this.editor.getReadOnly()||this.editor.replaceAll(this.replaceInput.value)},this.hide=function(){this.active=!1,this.setSearchRange(null),this.editor.off("changeSession",this.setSession),this.element.style.display="none",this.editor.keyBinding.removeKeyboardHandler(this.$closeSearchBarKb),this.editor.focus()},this.show=function(e,t){this.active=!0,this.editor.on("changeSession",this.setSession),this.element.style.display="",this.replaceOption.checked=t,e&&(this.searchInput.value=e),this.searchInput.focus(),this.searchInput.select(),this.editor.keyBinding.addKeyboardHandler(this.$closeSearchBarKb),this.$syncOptions(!0)},this.isFocused=function(){var e=document.activeElement;return e==this.searchInput||e==this.replaceInput}}).call(v.prototype),t.SearchBox=v,t.Search=function(e,t){(e.searchBox||new v(e)).show(e.session.getTextRange(),t)}}),window.require(["ace/ext/searchbox"],function(e){"object"==typeof module&&"object"==typeof exports&&module&&(module.exports=e)});
+
+try
+	{
+	// SETTING THE DEFAULT FILE NAME IN THE LABEL
+	document.getElementById("tinyace_filename").innerHTML = STRING_FILENAME;
+
+	// SETTING THE PATH OF THE ACE CORE
+	ace.config.set("basePath",".");
+
+	// CREATING THE ACE INSTANCE
+	var editor = ace.edit("tinyace_textcode");
+
+	// SETTING THE OPTIONS
+	editor.setOptions({fontSize:"14px",showPrintMargin:false,showInvisibles:true,tabSize:4,useSoftTabs:false,highlightActiveLine:false});
+
+	// REMOVING COMMAND
+	editor.commands.removeCommand("gotoline");
+
+	// SETTING THE DEFAULT PROGRAMMING LANGUAGE IN THE ACE CORE
+	editor.session.setMode("ace/mode/html");
+
+	// SETTING THE THEME
+	editor.setTheme("ace/theme/monokai");
+
+	// DISABLING WORKERS
+	editor.session.setUseWorker(false);
+
+	// SETTING WELCOME MESSAGE
+	editor.setValue(STRING_WELCOME);
+
+	// CLEARING SELECTION
+	editor.clearSelection();
+
+	// MOVING TO TOP OF THE DOCUMENT
+	editor.selection.moveTo(0,0);
+
+	// CLEARING THE UNDOMANAGER RECORDS
+	editor.session.getUndoManager().reset();
+
+	// GETTING FOCUS IN THE EDITOR
+	editor.focus();
+
+	// SETTING WHAT WILL HAPPEN WHEN THE EDITOR CONTENT CHANGES
+	editor.getSession().on("change", function()
+		{
+		// THE DOCUMENT WILL BE DIRTY
+		window.onbeforeunload = function(e){return "changed";};
+
+		// THE UNDO BUTTON WILL BE ENABLED
+		document.getElementById("buttonUndo").classList.add("tinyace_button_undo_enabled");
+		document.getElementById("buttonUndo").classList.remove("tinyace_button_undo_disabled");
+		});
+	}
+	catch(err)
+	{
+	}
+
+function menuNewFile()
+	{
+	try
+		{
+		var message = true;
+
+		// IF THE DOCUMENT IS DIRTY, A DISCARD CHANGES QUESTION WILL SHOW UP
+		if (!editor.session.getUndoManager().isClean())
+			{
+			message = confirm(STRING_NEW_QUESTION);
+			}
+
+		// IF THE USER DISCARDS CHANGES OR CREATES A NEW DOCUMENT
+		if (message == true)
+			{
+			// SETTING THE DEFAULT FILE NAME IN THE LABEL
+			STRING_FILENAME = STRING_FILENAME_EMPTY + ".htm";
+			document.getElementById("tinyace_filename").innerHTML = STRING_FILENAME;
+
+			// SETTING THE DEFAULT PROGRAMMING LANGUAGE
+			document.getElementById("tinyace_language").innerHTML = "HTML";
+			editor.session.setMode("ace/mode/html");
+
+			// CLEARING THE EDITOR CONTENT
+			editor.setValue("");
+
+			// CLEARING SELECTION
+			editor.clearSelection();
+
+			// MOVING TO TOP OF THE DOCUMENT
+			editor.selection.moveTo(0,0);
+
+			// CLEARING THE UNDOMANAGER RECORDS
+			editor.session.getUndoManager().reset();
+
+			// SETTING THE DEFAULT STATE FOR EACH BUTTON
+			document.getElementById("buttonUndo").classList.add("tinyace_button_undo_disabled");
+			document.getElementById("buttonUndo").classList.remove("tinyace_button_undo_enabled");
+			document.getElementById("buttonRedo").classList.add("tinyace_button_redo_disabled");
+			document.getElementById("buttonRedo").classList.remove("tinyace_button_redo_enabled");
+
+			// HIDING THE SEARCH BOX (IF AVAILABLE)
+			try{editor.searchBox.hide();}catch(err){}
+
+			// SETTING THE DOCUMENT AS CLEAN
+			window.onbeforeunload = null;
+			}
+
+		// GETTING FOCUS IN THE EDITOR
+		try{editor.focus()}catch(err){}
+		}
+		catch(err)
+		{
+		}
+	}
+
+function menuOpenFile(file)
+	{
+	try
+		{
+		var message = true;
+
+		// IF THE DOCUMENT IS DIRTY, A DISCARD CHANGES QUESTION WILL SHOW UP
+		if (!editor.session.getUndoManager().isClean())
+			{
+			message = confirm(STRING_NEW_QUESTION);
+			}
+
+		// IF THE USER DISCARDS CHANGES OR OPENS A DOCUMENT
+		if (message == true)
+			{
+			// CREATING THE FILEREADER
+			var filereader = new FileReader();
+			filereader.file_name = file.name;
+
+			// SETTING THE FILE NAME
+			STRING_FILENAME = file.name;
+
+			// CHECKING THE FILE EXTENSION
+			var extension = filereader.file_name.split(".").pop().toLowerCase();
+			filereader.onload = function()
+				{
+				// GETTING THE FILE CONTENT
+				var content = this.result;
+
+				// SETTING THE FILE NAME VALUE IN THE LABEL
+				document.getElementById("tinyace_filename").innerHTML = STRING_FILENAME;
+
+				// SETTING THE PROGRAMMING LANGUAGE
+				var newLanguage;
+				var selectedLanguage;
+				if (extension=="htm" || extension=="html")		{newLanguage = "HTML";selectedLanguage="html";}
+				else if (extension=="js")						{newLanguage = "JavaScript";selectedLanguage="javascript";}
+				else if (extension=="css")						{newLanguage = "CSS";selectedLanguage="css";}
+				else if (extension=="java")						{newLanguage = "Java";selectedLanguage="java";}
+				else if (extension=="php")						{newLanguage = "PHP";selectedLanguage="php";}
+				else if (extension=="xml")						{newLanguage = "XML";selectedLanguage="xml";}
+				else if (extension=="c")						{newLanguage = "C";selectedLanguage="c_cpp";}
+				else if (extension=="ino")						{newLanguage = "Arduino";selectedLanguage="c_cpp";}
+				else											{newLanguage = "HTML";selectedLanguage="html";}
+
+				// SETTING THE PROGRAMMING LANGUAGE IN THE LABEL
+				document.getElementById("tinyace_language").innerHTML = newLanguage;
+
+				// SETTING THE PROGRAMMING LANGUAGE IN THE ACE CORE
+				editor.session.setMode("ace/mode/" + selectedLanguage);
+
+				// SETTING THE FILE CONTENT INTO THE EDITOR
+				editor.setValue(content);
+
+				// CLEARING SELECTION
+				editor.clearSelection();
+
+				// MOVING TO TOP OF THE DOCUMENT
+				editor.selection.moveTo(0,0);
+
+				// CLEARING THE UNDOMANAGER RECORDS
+				editor.session.getUndoManager().reset();
+
+				// SETTING THE DEFAULT STATE FOR EACH BUTTON
+				document.getElementById("buttonUndo").classList.add("tinyace_button_undo_disabled");
+				document.getElementById("buttonUndo").classList.remove("tinyace_button_undo_enabled");
+				document.getElementById("buttonRedo").classList.add("tinyace_button_redo_disabled");
+				document.getElementById("buttonRedo").classList.remove("tinyace_button_redo_enabled");
+
+				// HIDING THE SEARCH BOX (IF AVAILABLE)
+				try{editor.searchBox.hide();}catch(err){}
+
+				// SETTING THE DOCUMENT AS CLEAN
+				window.onbeforeunload = null;
+
+				// SCROLLING TO TOP OF THE DOCUMENT
+				editor.scrollToLine(0,true,true,function(){});
+
+				// GETTING FOCUS IN THE EDITOR
+				editor.focus();
+
+				// CLEARING THE SELECTED FILE VALUE
+				document.getElementById("fileOpener").value = null;
+				};
+
+			// READING THE FILE
+			filereader.readAsText(file,"ISO-8859-1");
+			}
+
+		// CLEARING THE SELECTED FILE VALUE
+		document.getElementById("fileOpener").value = null;
+		}
+		catch(err)
+		{
+		}
+	}
+
+function menuSaveFile()
+	{
+	try
+		{
+		// GETTING THE EDITOR CONTENT AS A BLOB VALUE
+		var blobValue = new Blob([editor.getValue()],{type:"text/plain"});
+
+		// GETTING THE FILE NAME
+		var filename = STRING_FILENAME;
+
+		// DOWNLOADING THE FILE
+		var link = document.createElement("a");
+		link.style.display = "none";
+		document.body.appendChild(link);
+		link.href = URL.createObjectURL(blobValue);
+		link.download = filename || "data.json";
+		link.click();
+
+		try
+			{
+			// CLEARING THE UNDOMANAGER RECORDS
+			editor.session.getUndoManager().reset();
+
+			// SETTING THE DEFAULT STATE FOR EACH BUTTON
+			document.getElementById("buttonUndo").classList.add("tinyace_button_undo_disabled");
+			document.getElementById("buttonUndo").classList.remove("tinyace_button_undo_enabled");
+			document.getElementById("buttonRedo").classList.add("tinyace_button_redo_disabled");
+			document.getElementById("buttonRedo").classList.remove("tinyace_button_redo_enabled");
+
+			// HIDING THE SEARCH BOX (IF AVAILABLE)
+			try{editor.searchBox.hide();}catch(err){}
+
+			// SETTING THE DOCUMENT AS CLEAN
+			window.onbeforeunload = null;
+
+			// GETTING FOCUS IN THE EDITOR
+			editor.focus();
+			}
+			catch(err)
+			{
+			}
+		}
+		catch(err)
+		{
+		}
+	}
+
+function menuInsert(file)
+	{
+	try
+		{
+		var filereader = new FileReader();
+		filereader.file_name = file.name;
+
+		// CHECKING THE FILE EXTENSION
+		var extension = filereader.file_name.split(".").pop().toLowerCase();
+		filereader.onload = function()
+			{
+			// GETTING THE FILE CONTENT
+			var content = this.result;
+
+			// SETTING THE FILE CONTENT INTO THE EDITOR
+			editor.session.insert(editor.getCursorPosition(), content);
+
+			// CLEARING SELECTION
+			editor.clearSelection();
+
+			// GETTING FOCUS IN THE EDITOR
+			editor.focus();
+
+			// CLEARING THE SELECTED FILE VALUE
+			document.getElementById("fileInserter").value = null;
+			};
+
+		// READING THE FILE
+		filereader.readAsDataURL(file);
+
+		// CLEARING THE SELECTED FILE VALUE
+		document.getElementById("fileInserter").value = null;
+		}
+		catch(err)
+		{
+		}
+	}
+
+function menuSearch()
+	{
+	// SHOWING THE SEARCH BOX
+	try
+		{
+		editor.execCommand("find");
+		}
+		catch(err)
+		{
+		}
+	}
+
+function menuUndo()
+	{
+	try
+		{
+		// UNDO THE EDITOR
+		editor.undo();
+
+		// GETTING FOCUS IN THE EDITOR
+		editor.focus();
+
+		// CLEARING SELECTION
+		editor.clearSelection();
+
+		// IF THERE ARE ANY UNDOS LEFT, THE UNDO BUTTON WILL BE DISABLED
+		if (!editor.session.getUndoManager().hasUndo())
+			{
+			document.getElementById("buttonUndo").classList.add("tinyace_button_undo_disabled");
+			document.getElementById("buttonUndo").classList.remove("tinyace_button_undo_enabled");
+			}
+
+		// IF THERE ARE ANY REDOS LEFT, THE REDO BUTTON WILL BE DISABLED
+		if (editor.session.getUndoManager().hasRedo())
+			{
+			document.getElementById("buttonRedo").classList.add("tinyace_button_redo_enabled");
+			document.getElementById("buttonRedo").classList.remove("tinyace_button_redo_disabled");
+			}
+		}
+		catch(err)
+		{
+		}
+	}
+
+function menuRedo()
+	{
+	try
+		{
+		// REDO THE EDITOR
+		editor.redo();
+
+		// GETTING FOCUS IN THE EDITOR
+		editor.focus();
+
+		// CLEARING SELECTION
+		editor.clearSelection();
+
+		// IF THERE ARE ANY UNDOS LEFT, THE UNDO BUTTON WILL BE DISABLED
+		if (!editor.session.getUndoManager().hasRedo())
+			{
+			document.getElementById("buttonRedo").classList.add("tinyace_button_redo_disabled");
+			document.getElementById("buttonRedo").classList.remove("tinyace_button_redo_enabled");
+			}
+
+		// IF THERE ARE ANY REDOS LEFT, THE REDO BUTTON WILL BE DISABLED
+		if (editor.session.getUndoManager().hasUndo())
+			{
+			document.getElementById("buttonUndo").classList.add("tinyace_button_undo_enabled");
+			document.getElementById("buttonUndo").classList.remove("tinyace_button_undo_disabled");
+			}
+		}
+		catch(err)
+		{
+		}
+	}
+
+function menuLanguage(selectedLanguage)
+	{
+	try
+		{
+		// GETTING THE FILE NAME WITHOUT THE EXTENSION
+		var changeFileName = STRING_FILENAME.indexOf(STRING_FILENAME_EMPTY + ".");
+
+		// GETTING THE NEW SELECTED PROGRAMMING LANGUAGE
+		var selectedExtension = "";
+		var selectedLanguageLabel = "";
+		if (selectedLanguage=="html")				{selectedExtension=".htm";selectedLanguageLabel="HTML";}
+		else if (selectedLanguage=="javascript")	{selectedExtension=".js";selectedLanguageLabel="JavaScript";}
+		else if (selectedLanguage=="css")			{selectedExtension=".css";selectedLanguageLabel="CSS";}
+		else if (selectedLanguage=="java")			{selectedExtension=".java";selectedLanguageLabel="Java";}
+		else if (selectedLanguage=="php")			{selectedExtension=".php";selectedLanguageLabel="PHP";}
+		else if (selectedLanguage=="xml")			{selectedExtension=".xml";selectedLanguageLabel="XML";}
+		else if (selectedLanguage=="c")				{selectedExtension=".c";selectedLanguage="c_cpp";selectedLanguageLabel="C";}
+		else if (selectedLanguage=="arduino")		{selectedExtension=".ino";selectedLanguage="c_cpp";selectedLanguageLabel="Arduino";}
+		if (changeFileName>-1){STRING_FILENAME = STRING_FILENAME_EMPTY + selectedExtension;}
+
+		// SETTING THE NEW FILE NAME IN THE LABEL
+		document.getElementById("tinyace_filename").innerHTML = STRING_FILENAME;
+
+		// SETTING THE NEW PROGRAMMING LANGUAGE SELECTED IN THE LABEL
+		document.getElementById("tinyace_language").innerHTML = selectedLanguageLabel;
+
+		// SETTING THE NEW PROGRAMMING LANGUAGE SELECTED IN THE ACE CORE
+		editor.session.setMode("ace/mode/" + selectedLanguage);
+
+		// GETTING FOCUS IN THE EDITOR
+		editor.focus();
+		}
+		catch(err)
+		{
+		}
+	}
+
+function resizeTinyACEEditor()
+	{
+	try
+		{
+		// GETTING THE WINDOW SIZE
+		var w = window, d = document, e = d.documentElement, g = d.getElementsByTagName("body")[0], x = w.innerWidth || e.clientWidth || g.clientWidth, y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+
+		// CALCUTING THE NEW SIZE FOR THE EDITOR
+		var editHeight = y - 41;
+
+		// RESIZING THE EDITOR
+		document.getElementById("tinyace_textcode_container").style.height = editHeight.toString() + "px";
+		editor.resize();
+
+		// GETTING FOCUS IN THE EDITOR
+		editor.focus();
+		}
+		catch(err)
+		{
+		}
+	}
+
+function showDropDownMenu()
+	{
+	try
+		{
+		// SHOWING THE DROPDOWN MENU WITH THE PROGRAMMING LANGUAGES LIST
+		document.getElementById("myDropdown").classList.toggle("tinyace_dropdown_show");
+		}
+		catch(err)
+		{
+		}
+	}
+
+window.onresize = function()
+	{
+	// RESIZING THE EDITOR
+	resizeTinyACEEditor();
+	}
+
+window.onload = function()
+	{
+	// HIDING THE LOADING SPLASH
+	document.getElementsByClassName("tinyace_splash_container")[0].style.display = "none";
+	document.getElementsByClassName("tinyace_splash")[0].style.display = "none";
+
+	// SHOWING THE CODE EDITOR
+	document.getElementById("tinyace_textcode_container").style.display = "block";
+
+	// RESIZING THE EDITOR
+	resizeTinyACEEditor();
+
+	// SETTING WHAT HAPPENS WHEN EACH ELEMENT IS CLICKED
+	document.getElementById("buttonNew").addEventListener("click",function(event){menuNewFile()});
+	document.getElementById("buttonOpen").addEventListener("click",function(event){editor.focus();document.getElementById("fileOpener").click();});
+	document.getElementById("buttonSave").addEventListener("click",function(event){menuSaveFile()});
+	document.getElementById("buttonUndo").addEventListener("click",function(event){menuUndo()});
+	document.getElementById("buttonRedo").addEventListener("click",function(event){menuRedo()});
+	document.getElementById("buttonSearch").addEventListener("click",function(event){menuSearch()});
+	document.getElementById("buttonInsert").addEventListener("click",function(event){editor.focus();document.getElementById("fileInserter").click();});
+	document.getElementById("tinyace_language").addEventListener("click",function(event){showDropDownMenu()});
+	document.getElementById("tinyace_filename").addEventListener("click",function(event){editor.focus()});
+	}
+
+window.onclick = function(event)
+	{
+	try
+		{
+		// CODE TO HIDE THE DROPDOWN LIST WHEN IS BEEN DISPLAYED AND THE CLICK HAPPENS SOMEWHERE ELSE
+		if (!event.target.matches(".tinyace_dropdown_button"))
+			{
+			var dropdowns = document.getElementsByClassName("tinyace_dropdown_content");
+			for (var i = 0; i < dropdowns.length; i++)
+				{
+				var openDropdown = dropdowns[i];
+				if (openDropdown.classList.contains("tinyace_dropdown_show"))
+					{
+					openDropdown.classList.remove("tinyace_dropdown_show");
+					editor.focus();
+					setTimeout(function(){editor.focus();},200);
+					}
+				}
+			}
+		}
+		catch(err)
+		{
+		}
+	}
