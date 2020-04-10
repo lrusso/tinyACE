@@ -469,13 +469,13 @@ function showDropDownMenu()
 		}
 	}
 
-window.onresize = function()
+window.addEventListener("resize", function()
 	{
 	// RESIZING THE EDITOR
 	resizeTinyACEEditor();
-	}
+	});
 
-window.onload = function()
+window.addEventListener("load", function()
 	{
 	// HIDING THE LOADING SPLASH
 	document.getElementsByClassName("tinyace_splash_container")[0].style.display = "none";
@@ -497,9 +497,9 @@ window.onload = function()
 	document.getElementById("buttonInsert").addEventListener("click",function(event){editor.focus();document.getElementById("fileInserter").click();});
 	document.getElementById("tinyace_language").addEventListener("click",function(event){showDropDownMenu()});
 	document.getElementById("tinyace_filename").addEventListener("click",function(event){editor.focus()});
-	}
+	});
 
-window.onclick = function(event)
+window.addEventListener("click", function()
 	{
 	try
 		{
@@ -522,4 +522,4 @@ window.onclick = function(event)
 		catch(err)
 		{
 		}
-	}
+	});
