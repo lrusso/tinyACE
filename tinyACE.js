@@ -66,6 +66,9 @@ try
 	// CLEARING THE UNDOMANAGER RECORDS
 	editor.session.getUndoManager().reset();
 
+	// WORKAROUND FOR SYNTAX HIGHLIGHTING LARGE LINES AND FILES
+	editor.session.bgTokenizer.tokenizer.$setMaxTokenCount(999999);
+
 	// GETTING FOCUS IN THE EDITOR
 	editor.focus();
 
@@ -155,6 +158,13 @@ function menuOpenFile(file)
 		// IF THE USER DISCARDS CHANGES OR OPENS A DOCUMENT
 		if (message == true)
 			{
+			// LOCKING THE EDITOR AND HIDING THE POINTER
+			editor.setOptions({readOnly: true, highlightGutterLine: false});
+			editor.renderer.$cursorLayer.element.style.display = "none";
+
+			// SHOWING THE LOADING SPLASH
+			document.getElementsByClassName("tinyace_splash_container")[0].style.display = "block";
+
 			// CREATING THE FILEREADER
 			var filereader = new FileReader();
 			filereader.file_name = file.name;
@@ -162,71 +172,81 @@ function menuOpenFile(file)
 			// SETTING THE FILE NAME
 			STRING_FILENAME = file.name;
 
-			// CHECKING THE FILE EXTENSION
-			var extension = filereader.file_name.split(".").pop().toLowerCase();
-			filereader.onload = function()
+			setTimeout(function()
 				{
-				// GETTING THE FILE CONTENT
-				var content = this.result;
+				// CHECKING THE FILE EXTENSION
+				var extension = filereader.file_name.split(".").pop().toLowerCase();
+				filereader.onload = function()
+					{
+					// GETTING THE FILE CONTENT
+					var content = this.result;
 
-				// SETTING THE FILE NAME VALUE IN THE LABEL
-				document.getElementById("tinyace_filename").innerHTML = STRING_FILENAME;
+					// SETTING THE FILE NAME VALUE IN THE LABEL
+					document.getElementById("tinyace_filename").innerHTML = STRING_FILENAME;
 
-				// SETTING THE PROGRAMMING LANGUAGE
-				var newLanguage;
-				var selectedLanguage;
-				if (extension=="htm" || extension=="html")		{newLanguage = "HTML";selectedLanguage="html";}
-				else if (extension=="js")						{newLanguage = "JavaScript";selectedLanguage="javascript";}
-				else if (extension=="css")						{newLanguage = "CSS";selectedLanguage="css";}
-				else if (extension=="java")						{newLanguage = "Java";selectedLanguage="java";}
-				else if (extension=="php")						{newLanguage = "PHP";selectedLanguage="php";}
-				else if (extension=="xml")						{newLanguage = "XML";selectedLanguage="xml";}
-				else if (extension=="c")						{newLanguage = "C";selectedLanguage="c_cpp";}
-				else if (extension=="ino")						{newLanguage = "Arduino";selectedLanguage="c_cpp";}
-				else											{newLanguage = "HTML";selectedLanguage="html";}
+					// SETTING THE PROGRAMMING LANGUAGE
+					var newLanguage;
+					var selectedLanguage;
+					if (extension=="htm" || extension=="html")		{newLanguage = "HTML";selectedLanguage="html";}
+					else if (extension=="js")						{newLanguage = "JavaScript";selectedLanguage="javascript";}
+					else if (extension=="css")						{newLanguage = "CSS";selectedLanguage="css";}
+					else if (extension=="java")						{newLanguage = "Java";selectedLanguage="java";}
+					else if (extension=="php")						{newLanguage = "PHP";selectedLanguage="php";}
+					else if (extension=="xml")						{newLanguage = "XML";selectedLanguage="xml";}
+					else if (extension=="c")						{newLanguage = "C";selectedLanguage="c_cpp";}
+					else if (extension=="ino")						{newLanguage = "Arduino";selectedLanguage="c_cpp";}
+					else											{newLanguage = "HTML";selectedLanguage="html";}
 
-				// SETTING THE PROGRAMMING LANGUAGE IN THE LABEL
-				document.getElementById("tinyace_language").innerHTML = newLanguage;
+					// SETTING THE PROGRAMMING LANGUAGE IN THE LABEL
+					document.getElementById("tinyace_language").innerHTML = newLanguage;
 
-				// SETTING THE PROGRAMMING LANGUAGE IN THE ACE CORE
-				editor.session.setMode("ace/mode/" + selectedLanguage);
+					// SETTING THE PROGRAMMING LANGUAGE IN THE ACE CORE
+					editor.session.setMode("ace/mode/" + selectedLanguage);
 
-				// SETTING THE FILE CONTENT INTO THE EDITOR
-				editor.setValue(content);
+					// SETTING THE FILE CONTENT INTO THE EDITOR
+					editor.setValue(content);
 
-				// CLEARING SELECTION
-				editor.clearSelection();
+					// CLEARING SELECTION
+					editor.clearSelection();
 
-				// MOVING TO TOP OF THE DOCUMENT
-				editor.selection.moveTo(0,0);
+					// MOVING TO TOP OF THE DOCUMENT
+					editor.selection.moveTo(0,0);
 
-				// CLEARING THE UNDOMANAGER RECORDS
-				editor.session.getUndoManager().reset();
+					// CLEARING THE UNDOMANAGER RECORDS
+					editor.session.getUndoManager().reset();
 
-				// SETTING THE DEFAULT STATE FOR EACH BUTTON
-				document.getElementById("buttonUndo").classList.add("tinyace_button_undo_disabled");
-				document.getElementById("buttonUndo").classList.remove("tinyace_button_undo_enabled");
-				document.getElementById("buttonRedo").classList.add("tinyace_button_redo_disabled");
-				document.getElementById("buttonRedo").classList.remove("tinyace_button_redo_enabled");
+					// SETTING THE DEFAULT STATE FOR EACH BUTTON
+					document.getElementById("buttonUndo").classList.add("tinyace_button_undo_disabled");
+					document.getElementById("buttonUndo").classList.remove("tinyace_button_undo_enabled");
+					document.getElementById("buttonRedo").classList.add("tinyace_button_redo_disabled");
+					document.getElementById("buttonRedo").classList.remove("tinyace_button_redo_enabled");
 
-				// HIDING THE SEARCH BOX (IF AVAILABLE)
-				try{editor.searchBox.hide();}catch(err){}
+					// HIDING THE SEARCH BOX (IF AVAILABLE)
+					try{editor.searchBox.hide();}catch(err){}
 
-				// SETTING THE DOCUMENT AS CLEAN
-				window.onbeforeunload = null;
+					// SETTING THE DOCUMENT AS CLEAN
+					window.onbeforeunload = null;
 
-				// SCROLLING TO TOP OF THE DOCUMENT
-				editor.scrollToLine(0,true,true,function(){});
+					// SCROLLING TO TOP OF THE DOCUMENT
+					editor.scrollToLine(0,true,true,function(){});
 
-				// GETTING FOCUS IN THE EDITOR
-				editor.focus();
+					// GETTING FOCUS IN THE EDITOR
+					editor.focus();
 
-				// CLEARING THE SELECTED FILE VALUE
-				document.getElementById("fileOpener").value = null;
-				};
+					// UNLOCKING THE EDITOR AND SHOWING THE POINTER
+					editor.setOptions({readOnly: false, highlightGutterLine: true});
+					editor.renderer.$cursorLayer.element.style.display = "block";
 
-			// READING THE FILE
-			filereader.readAsText(file,"ISO-8859-1");
+					// HIDING THE LOADING SPLASH
+					document.getElementsByClassName("tinyace_splash_container")[0].style.display = "none";
+
+					// CLEARING THE SELECTED FILE VALUE
+					document.getElementById("fileOpener").value = null;
+					};
+
+				// READING THE FILE
+				filereader.readAsText(file,"ISO-8859-1");
+				}, 200);
 			}
 
 		// CLEARING THE SELECTED FILE VALUE
@@ -479,7 +499,6 @@ window.addEventListener("load", function()
 	{
 	// HIDING THE LOADING SPLASH
 	document.getElementsByClassName("tinyace_splash_container")[0].style.display = "none";
-	document.getElementsByClassName("tinyace_splash")[0].style.display = "none";
 
 	// SHOWING THE CODE EDITOR
 	document.getElementById("tinyace_textcode_container").style.display = "block";
