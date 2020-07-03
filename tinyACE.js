@@ -172,6 +172,7 @@ function menuOpenFile(file)
 			// SETTING THE FILE NAME
 			STRING_FILENAME = file.name;
 
+			// WAITING FOR THE SPLASH CONTAINER TO BE DISPLAYED
 			setTimeout(function()
 				{
 				// CHECKING THE FILE EXTENSION
