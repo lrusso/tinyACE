@@ -107,7 +107,6 @@ function menuNewFile()
 			document.getElementById("tinyace_filename").innerHTML = STRING_FILENAME;
 
 			// SETTING THE DEFAULT PROGRAMMING LANGUAGE
-			document.getElementById("tinyace_language").innerHTML = "HTML";
 			editor.session.setMode("ace/mode/html");
 
 			// CLEARING THE EDITOR CONTENT
@@ -197,9 +196,6 @@ function menuOpenFile(file)
 					else if (extension=="c")						{newLanguage = "C";selectedLanguage="c_cpp";}
 					else if (extension=="ino")						{newLanguage = "Arduino";selectedLanguage="c_cpp";}
 					else											{newLanguage = "HTML";selectedLanguage="html";}
-
-					// SETTING THE PROGRAMMING LANGUAGE IN THE LABEL
-					document.getElementById("tinyace_language").innerHTML = newLanguage;
 
 					// SETTING THE PROGRAMMING LANGUAGE IN THE ACE CORE
 					editor.session.setMode("ace/mode/" + selectedLanguage);
@@ -442,9 +438,6 @@ function menuLanguage(selectedLanguage)
 		// SETTING THE NEW FILE NAME IN THE LABEL
 		document.getElementById("tinyace_filename").innerHTML = STRING_FILENAME;
 
-		// SETTING THE NEW PROGRAMMING LANGUAGE SELECTED IN THE LABEL
-		document.getElementById("tinyace_language").innerHTML = selectedLanguageLabel;
-
 		// SETTING THE NEW PROGRAMMING LANGUAGE SELECTED IN THE ACE CORE
 		editor.session.setMode("ace/mode/" + selectedLanguage);
 
@@ -478,18 +471,6 @@ function resizeTinyACEEditor()
 		}
 	}
 
-function showDropDownMenu()
-	{
-	try
-		{
-		// SHOWING THE DROPDOWN MENU WITH THE PROGRAMMING LANGUAGES LIST
-		document.getElementById("myDropdown").classList.toggle("tinyace_dropdown_show");
-		}
-		catch(err)
-		{
-		}
-	}
-
 window.addEventListener("resize", function()
 	{
 	// RESIZING THE EDITOR
@@ -515,31 +496,5 @@ window.addEventListener("load", function()
 	document.getElementById("buttonRedo").addEventListener("click",function(event){menuRedo()});
 	document.getElementById("buttonSearch").addEventListener("click",function(event){menuSearch()});
 	document.getElementById("buttonInsert").addEventListener("click",function(event){editor.focus();document.getElementById("fileInserter").click();});
-	document.getElementById("tinyace_language").addEventListener("click",function(event){showDropDownMenu()});
 	document.getElementById("tinyace_filename").addEventListener("click",function(event){editor.focus()});
-	});
-
-window.addEventListener("click", function()
-	{
-	try
-		{
-		// CODE TO HIDE THE DROPDOWN LIST WHEN IS BEEN DISPLAYED AND THE CLICK HAPPENS SOMEWHERE ELSE
-		if (!event.target.matches(".tinyace_dropdown_button"))
-			{
-			var dropdowns = document.getElementsByClassName("tinyace_dropdown_content");
-			for (var i = 0; i < dropdowns.length; i++)
-				{
-				var openDropdown = dropdowns[i];
-				if (openDropdown.classList.contains("tinyace_dropdown_show"))
-					{
-					openDropdown.classList.remove("tinyace_dropdown_show");
-					editor.focus();
-					setTimeout(function(){editor.focus();},200);
-					}
-				}
-			}
-		}
-		catch(err)
-		{
-		}
 	});
