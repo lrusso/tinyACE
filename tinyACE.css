@@ -1,6 +1,6 @@
 html,body{margin:0;padding:0;background-color:black;-webkit-user-select:none;-moz-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:none}
 
-.tinyace_menubar{border-bottom:thin solid #D3D3D3;background-color:#F2F2F2;left:0;right:0;padding-top:0px;padding-bottom:0px;height:40px;overflow:hidden;text-align:center;font-family:Arial;font-size:13px;overflow-x:scroll}
+.tinyace_menubar{border-bottom:thin solid #D3D3D3;background-color:#F2F2F2;left:0;right:0;padding-top:0px;padding-bottom:0px;height:40px;overflow:hidden;text-align:center;font-family:Arial;font-size:13px;overflow-x:scroll;scrollbar-width:none}
 .tinyace_menubar::-webkit-scrollbar{display:none}
 .tinyace_wrapper{width:550px}
 .tinyace_holder{float:left;padding-top:3px;padding-bottom:3px;margin:0}
