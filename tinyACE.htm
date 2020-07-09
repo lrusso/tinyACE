@@ -12,7 +12,10 @@
 
 			var STRING_FILENAME = "";
 			var STRING_FILENAME_EMPTY = "";
-			var STRING_NEW_QUESTION = "";
+			var STRING_LOSECHANGES_TITLE = "";
+			var STRING_LOSECHANGES_MESSAGE = "";
+			var STRING_LOSECHANGES_YES = "";
+			var STRING_LOSECHANGES_NO = "";
 			var STRING_WELCOME = "";
 
 			// CHECKING THE USER LANGUAGE
@@ -20,14 +23,20 @@
 				{
 				STRING_FILENAME = "Sin nombre.htm";
 				STRING_FILENAME_EMPTY = "Sin nombre";
-				STRING_NEW_QUESTION = "\u00BFPerder cualquier cambio no guardado?";
+				STRING_LOSECHANGES_TITLE = "MENSAJE";
+				STRING_LOSECHANGES_MESSAGE = "\u00BFPerder cualquier cambio<br/>que no haya sido guardado?";
+				STRING_LOSECHANGES_YES = "S&iacute;";
+				STRING_LOSECHANGES_NO = "No";
 				STRING_WELCOME = "<!DOCTYPE html>\n<html lang=\"es\">\n" + String.fromCharCode(9) + "<head>\n" + String.fromCharCode(9) + String.fromCharCode(9) + "<meta charset=\"UTF-8\">\n" + String.fromCharCode(9) + String.fromCharCode(9) + "<link rel=\"stylesheet\" href=\"styles.css\">\n" + String.fromCharCode(9) + String.fromCharCode(9) + "<title>Bienvenido a TinyACE Editor (basado en Ace Code Editor) por Leonardo Russo / www.lrusso.com</title>\n" + String.fromCharCode(9) + "</head>\n" + String.fromCharCode(9) + "<body>\n" + String.fromCharCode(9) + String.fromCharCode(9) + "<form action=\"example.htm\" method=\"GET\">\n" + String.fromCharCode(9) + String.fromCharCode(9) + String.fromCharCode(9) + "<input type=\"text\" value=\"TEST TEXT\">\n" + String.fromCharCode(9) + String.fromCharCode(9) + String.fromCharCode(9) + "<input type=\"submit\" value=\"ENTER\">\n" + String.fromCharCode(9) + String.fromCharCode(9) + "</form>\n" + String.fromCharCode(9) + "</body>\n</html>";
 				}
 				else
 				{
 				STRING_FILENAME = "Untitled.htm";
 				STRING_FILENAME_EMPTY = "Untitled";
-				STRING_NEW_QUESTION = "Lose any unsaved changes?";
+				STRING_LOSECHANGES_TITLE = "MESSAGE";
+				STRING_LOSECHANGES_MESSAGE = "Lose any unsaved changes?";
+				STRING_LOSECHANGES_YES = "Yes";
+				STRING_LOSECHANGES_NO = "No";
 				STRING_WELCOME = "<!DOCTYPE html>\n<html lang=\"en\">\n" + String.fromCharCode(9) + "<head>\n" + String.fromCharCode(9) + String.fromCharCode(9) + "<meta charset=\"UTF-8\">\n" + String.fromCharCode(9) + String.fromCharCode(9) + "<link rel=\"stylesheet\" href=\"styles.css\">\n" + String.fromCharCode(9) + String.fromCharCode(9) + "<title>Welcome to TinyACE Editor (based on Ace Code Editor) by Leonardo Russo / www.lrusso.com</title>\n" + String.fromCharCode(9) + "</head>\n" + String.fromCharCode(9) + "<body>\n" + String.fromCharCode(9) + String.fromCharCode(9) + "<form action=\"example.htm\" method=\"GET\">\n" + String.fromCharCode(9) + String.fromCharCode(9) + String.fromCharCode(9) + "<input type=\"text\" value=\"TEST TEXT\">\n" + String.fromCharCode(9) + String.fromCharCode(9) + String.fromCharCode(9) + "<input type=\"submit\" value=\"ENTER\">\n" + String.fromCharCode(9) + String.fromCharCode(9) + "</form>\n" + String.fromCharCode(9) + "</body>\n</html>";
 				}
 		</script>
@@ -41,7 +50,7 @@
 				</div>
 				<div class="tinyace_holder">
 					<div class="tinyace_button_open_enabled" id="buttonOpen"></div>
-					<input type="file" class="tinyace_buttonHidden" id="fileOpener" onChange="menuOpenFile(document.getElementById('fileOpener').files[0]);">
+					<input type="file" class="tinyace_buttonHidden" id="fileOpener" onChange="menuOpenFileExecute(document.getElementById('fileOpener').files[0]);">
 				</div>
 				<div class="tinyace_holder">
 					<div class="tinyace_button_save_enabled" id="buttonSave"></div>
