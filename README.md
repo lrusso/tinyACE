@@ -21,4 +21,5 @@ https://lrusso.github.io/tinyACE/tinyACE.htm
 The ace.js file was modified in order to prevent from showing/marking breaklines in the document and to prevent showing the custom context menu in mobile devices (and by doing this, allowing the standard context menu for cut/copy/paste text).
 
 ## Core files
+
 https://github.com/ajaxorg/ace-builds
