@@ -29,7 +29,7 @@ html,body{margin:0;padding:0;background-color:black;-webkit-user-select:none;-mo
 .tinyace_dropdown_content span:hover{background-color:#3a76b1;color:white}
 .tinyace_dropdown_show{display:block}
 .tinyace_splash_container{position:fixed;left:0;right:0;top:0;bottom:0;background-color:rgba(0,0,0,0.5);z-index:9999}
-.tinyace_pleasewait{position:fixed;width:64px;height:64px;left:0;right:0;top:0;bottom:0;margin:auto auto;border:0;background-color:black}
+.tinyace_pleasewait{position:fixed;width:64px;height:64px;left:0;right:0;top:0;bottom:0;margin:auto auto;border:0}
 .tinyace_spinner{color:white;display:inline-block;position:relative;width:64px;height:64px}
 .tinyace_spinner div{transform-origin:32px 32px;animation:tinyace_spinner 1.2s linear infinite}
 .tinyace_spinner div:after{content:" ";display:block;position:absolute;top:3px;left:29px;width:5px;height:14px;border-radius:20%;background:white}
