@@ -22,12 +22,6 @@ html,body{margin:0;padding:0;background-color:black;-webkit-user-select:none;-mo
 .tinyace_button_insert_enabled{display:block;font-family:Arial;font-size:15px;line-height:32px;height:32px;width:28px;background-color:#F2F2F2;border:thin solid #F2F2F2;margin-left:3px;cursor:default;-webkit-user-select:none;-moz-user-select:none;user-select:none;background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAKZJREFUOI3F0r0JQjEQAODPn1J0ArF2BkdwB1ewcQULhQdu4Qh2TmBpZWUtgq080NhECJonioIHV4TLfdyF8O+oIXyLfAOE+ocNC5Qoqibo44BRBVDG++e0NwWW8XxCOwMUsXmeA1qxGGKOX2/zDAyT5oAdGrE2xQa9V8DsAQiYYJBMtke3ClhngFxu0ckBxzeBgFVcL9x/Yg3NyqfKxwXXn3zl/8YNVnlHgN1bl5kAAAAASUVORK5CYII=");background-repeat:no-repeat;background-position:center}
 .tinyace_button_insert_enabled:hover{background-color:#E3E3E3;border:thin solid #D3D3D3}
 .tinyace_buttonHidden{display:none}
-.tinyace_dropdown{background-color:white;position:absolute;display:inline-block;margin-left:6px;margin-top:3px;width:122px;z-index:9996;-webkit-user-select:none;-moz-user-select:none;user-select:none}
-.tinyace_dropdown_button{background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAiUlEQVQokZ2QOw7CMBBERyD7Ejsje+8HDZShI3Q5LVVoYhoXTqR8YKTRbvFG+wH+0BlABBB2HCv7o5LUZ3Jy8r3lTE7J7AkAcLPBpeLSmMmptUujS8XNhtkkl1419Km17fvlZrGGHg1cXCrJrKtMWIZCvenewLc1eL4eeU3k5ejjTiv9bugwvKkvmKcyN3mf66sAAAAASUVORK5CYII=");background-position:101px 8px;background-repeat:no-repeat;border:thin solid silver;color:white;padding-left:8px;padding-right:13px;padding-top:6px;padding-bottom:6px;font-family:Arial;text-align:left;font-size:13px;cursor:pointer;color:black;-webkit-user-select:none;-moz-user-select:none;user-select:none}
-.tinyace_dropdown_content{display:none;position:absolute;background-color:white;border:thin solid silver;width:120px;overflow:auto;top:0;z-index:9997}
-.tinyace_dropdown_content span{color:black;padding-left:8px;padding-right:13px;padding-top:6px;padding-bottom:6px;font-family:Arial;font-size:13px;text-decoration:none;display:block;text-align:left;cursor:pointer}
-.tinyace_dropdown_content span:hover{background-color:#3a76b1;color:white}
-.tinyace_dropdown_show{display:block}
 .tinyace_splash_container{position:fixed;left:0;right:0;top:0;bottom:0;background-color:rgba(0,0,0,0.5);z-index:9999}
 .tinyace_pleasewait{position:fixed;width:64px;height:64px;left:0;right:0;top:0;bottom:0;margin:auto auto;border:0}
 .tinyace_spinner{color:white;display:inline-block;position:relative;width:64px;height:64px}
