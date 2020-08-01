@@ -588,40 +588,6 @@ function menuRedo()
 		}
 	}
 
-function menuLanguage(selectedLanguage)
-	{
-	try
-		{
-		// GETTING THE FILE NAME WITHOUT THE EXTENSION
-		var changeFileName = STRING_FILENAME.indexOf(STRING_FILENAME_EMPTY + ".");
-
-		// GETTING THE NEW SELECTED PROGRAMMING LANGUAGE
-		var selectedExtension = "";
-		var selectedLanguageLabel = "";
-		if (selectedLanguage=="html")				{selectedExtension=".htm";selectedLanguageLabel="HTML";}
-		else if (selectedLanguage=="javascript")	{selectedExtension=".js";selectedLanguageLabel="JavaScript";}
-		else if (selectedLanguage=="css")			{selectedExtension=".css";selectedLanguageLabel="CSS";}
-		else if (selectedLanguage=="java")			{selectedExtension=".java";selectedLanguageLabel="Java";}
-		else if (selectedLanguage=="php")			{selectedExtension=".php";selectedLanguageLabel="PHP";}
-		else if (selectedLanguage=="xml")			{selectedExtension=".xml";selectedLanguageLabel="XML";}
-		else if (selectedLanguage=="c")				{selectedExtension=".c";selectedLanguage="c_cpp";selectedLanguageLabel="C";}
-		else if (selectedLanguage=="arduino")		{selectedExtension=".ino";selectedLanguage="c_cpp";selectedLanguageLabel="Arduino";}
-		if (changeFileName>-1){STRING_FILENAME = STRING_FILENAME_EMPTY + selectedExtension;}
-
-		// SETTING THE NEW FILE NAME IN THE LABEL
-		document.getElementById("tinyace_filename").innerHTML = STRING_FILENAME;
-
-		// SETTING THE NEW PROGRAMMING LANGUAGE SELECTED IN THE ACE CORE
-		editor.session.setMode("ace/mode/" + selectedLanguage);
-
-		// GETTING FOCUS IN THE EDITOR
-		editor.focus();
-		}
-		catch(err)
-		{
-		}
-	}
-
 function resizeTinyACEEditor()
 	{
 	try
