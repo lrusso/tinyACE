@@ -201,7 +201,7 @@ try
 	editor.getSession().on("change", function()
 		{
 		// THE DOCUMENT WILL BE DIRTY
-		window.onbeforeunload = function(e){return "changed";};
+		window.onbeforeunload = function(e){return "dirty";};
 
 		// THE UNDO BUTTON WILL BE ENABLED
 		document.getElementById("buttonUndo").classList.add("tinyace_button_undo_enabled");
