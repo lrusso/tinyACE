@@ -1,8 +1,9 @@
 html,body{position:fixed;height:100%;width:100%;overflow:auto;padding:0;margin:0;background-color:black;-webkit-user-select:none;-moz-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:none}
 
-.tinyace_menubar{border-bottom:thin solid #D3D3D3;background-color:#F2F2F2;left:0;right:0;padding-top:0px;padding-bottom:0px;height:40px;overflow:hidden;text-align:center;font-family:Arial;font-size:13px;overflow-x:scroll;scrollbar-width:none}
-.tinyace_menubar::-webkit-scrollbar{display:none}
-.tinyace_wrapper{width:550px}
+.tinyace_menu_container{height:40px;border-bottom:thin solid #D3D3D3;overflow-y:hidden}
+.tinyace_menu{border-bottom:thin solid #D3D3D3;background-color:#F2F2F2;left:0;right:0;padding-top:0px;padding-bottom:0px;height:80px;overflow-x:scroll;overflow-y:hidden;text-align:center;font-family:Arial;font-size:13px}
+.tinyace_menu::-webkit-scrollbar{display:none}
+.tinyace_menu_size{width:550px}
 .tinyace_holder{float:left;padding-top:3px;padding-bottom:3px;margin:0}
 .tinyace_separator{float:left;border-left:thin solid #D3D3D3;margin-left:5px;height:100px;width:1px}
 .tinyace_button_new_enabled{display:block;font-family:Arial;font-size:15px;line-height:32px;height:32px;width:28px;background-color:#F2F2F2;border:thin solid #F2F2F2;margin-left:3px;cursor:default;-webkit-user-select:none;-moz-user-select:none;user-select:none;background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAJ5JREFUOI3t06EKQjEUxvEfIjbxAeRGwccwGm4xGEwGH8JXMQlmQYtiMwi+g8EXMBuMGhx4GcpcM/iHw86273wb44wnO9wTccFIRD2MHUxwiAWBfThkjgYWseCM/ofi6n6JG8bxDb5lgyGWuGKVYzBAN+RHTHMMZuihHeYtNKuC1BvElDhBLaPoLX+DXzCoNlLh1WkpinhhK/2d41jDA8osKMtPNyUKAAAAAElFTkSuQmCC");background-repeat:no-repeat;background-position:center}
